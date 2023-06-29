@@ -13,3 +13,311 @@
  *= require_tree .
  *= require_self
  */
+ .navbar{
+    background-color:#3c599a !important;
+    height:50px !important;
+    border-radius:0 !important ;
+}
+
+.title{
+    color:white;
+    font-weight: 700 !important;
+    font-size: large !important;
+
+}
+.form-control.me-2{
+    height: 28px !important;
+    font-size: small !important;
+    font-weight: 600 !important;
+    border-radius: 2px ;
+    background-color: #fefefc;
+    color:#e9e8ea !important;
+
+
+}
+.nav-link.active{
+    font-weight: 700 !important;
+    font-size: small !important;
+    color:white !important;
+}
+.container{
+    margin: auto !important;
+}
+
+.form-signin .form-signin-heading, .form-signin .checkbox
+{
+    margin-bottom: 10px;
+}
+.form-signin .checkbox
+{
+    font-weight: normal;
+}
+.form-signin .form-control
+{
+    font-size: 16px;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.form-signin .form-control:focus
+{
+    z-index: 2;
+}
+.form-signin input[type="text"]
+{
+    margin-bottom: -1px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.form-signin input[type="password"]
+{
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+.account-wall
+{
+    margin-top: 20px;
+    background-color: #f7f7f7;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+.login-title
+{
+    color: #555;
+    font-size: 18px;
+    font-weight: 400;
+    display: block;
+}
+.profile-img
+{
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 10px;
+    display: block;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+.need-help
+{
+    margin-top: 10px;
+}
+.new-account
+{
+    display: block;
+    margin-top: 10px;
+}
+.login-title{
+    color: #394f8c !important;
+    font-size: xx-large;
+    font-weight: bold;
+    margin-top: 80px;
+}
+.btn.btn-lg.btn-primary.btn-block{
+    width: max-content !important;
+    background-color: #3d5b98;
+}
+.text-center.new-account{
+    text-decoration: none;
+    font-size: medium;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 8px;
+    color: #394f8c !important;
+}
+.form_title {
+    font-weight: 700;
+    margin-bottom: 7px;
+    margin-top: 18px;
+    font-size: large;
+}
+.feeds {
+    background-color: #f8f8f8;
+}
+.main_feeds {
+    background-color: white;
+    height:max-content;
+    position: relative;
+}
+.main_albums {
+    background-color: white;
+    height:max-content;
+
+}
+.left_title {
+    font-weight: 700;
+    color: #a7a7a7;
+    text-decoration: none;
+    font-size: small;
+    margin-left: 0;
+}
+.left_title1{
+    font-weight: 700;
+    color: #3c5798;
+    text-decoration: none;
+    font-size: small;
+    margin-left: 0;
+}
+.picture {
+    background-color: #f8f8f8;
+    border: 1px solid #e9e8ea;
+    height:inherit;
+    justify-content: center;
+    align-items: center;
+}
+#photoMode {
+    background-color: #3d5891;
+    color: white ;
+    font-weight: 700;
+    font-size: small;
+    border: 1px solid #babbc0 ;
+}
+#albumMode {
+    background-color:#fcfbfd;
+    color: #5877a2;
+    font-weight: 700;
+    border: 1px solid #babbc0 ;
+    font-size: small;
+}
+.btn-group.mode {
+    margin-bottom: 15px;
+    margin-top: 0px;
+
+}
+.container.feeds{
+    margin-top:10px !important;
+}
+.img_ava{
+    position:absolute;
+    top:0;
+    left:0;
+    height: 100%;
+    width: 100%;
+}
+.img_ava1,.img_ava2,.img_ava3{
+    position:absolute;
+    top:5%;
+    left:5%;
+    height: 85%;
+    width: 85%;
+}
+.img_ava2{
+    transform: rotate(4deg);
+}
+.img_ava3{
+    transform: rotate(8deg);
+}
+.name{
+    font-weight: bold;
+    font-size: medium;
+    color: #365a9d;
+}
+.description{
+    display: block;/* or inline-block */
+    overflow: hidden;
+    max-height: 7.2em;
+    line-height: 1.2em;
+    margin-right: 10px;
+    padding-bottom: 5px;
+    padding-right: 3px;
+    font-size: 13px;
+    text-align:left;
+    font-weight: 700;
+    color: #6f6f6f ;
+}
+.number-icon{
+    font-weight: 600;
+    color: #365a9d;
+    font-size: small;
+    margin-left: 1px;
+}
+.time-post{
+    color: #dcdcdc;
+    font-weight: 700;
+    font-size: small;
+    position:absolute;
+    right:6%;
+}
+.time-post1{
+    color:red;
+    font-weight: 700;
+    font-size: small;
+    position:absolute;
+    right:10%;
+}
+.title_post{
+    font-weight: 700;
+}
+.btn-close{
+    display:absolute !important;
+    right:0 !important;
+    color: black !important;
+    font-weight:bolder;
+    font-size: x-small;
+}
+.modal-close {
+      position: absolute;
+      top: 15px;
+      right: 25px;
+      color: #000000;
+      font-weight: bold;
+      cursor: pointer;
+}
+.edit_icon{
+      position: absolute;
+      top: 5px;
+      right: 2px;
+      color: #f0f0f0;
+      font-weight: bold;
+      cursor: pointer;
+}
+.description1{
+    text-align: justify;
+    color: black;
+    font-size: medium;
+    font-weight: 600;
+    line-height: 25px;
+}
+
+.post1{
+    height: 250px;
+}
+.album_post{
+    height: 170px !important;
+    position: relative;
+}
+.title_album_post{
+    background-color: rgba(141, 139, 139, 0.5);
+    color: white;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.img_album_post1,.img_album_post2,.img_album_post3{
+    position:absolute;
+    top:38px;
+    left:18px;
+    width: 80%;
+    height:120px;
+    justify-items: center;
+    z-index: 3;
+}
+.img_album_post2{
+    z-index: 2;
+    transform:rotate(4deg)
+}
+.img_album_post3{
+    z-index: 1;
+    transform: rotate(8deg);
+}
+.private_icon{
+    position: absolute;
+    right:17px;
+    z-index: 4;
+    width: 23px;
+    background-color:white;
+    border-radius: 10px;
+    bottom: 0;
+}
