@@ -3,7 +3,7 @@ class CreateAlbums < ActiveRecord::Migration[7.0]
     create_table :albums do |t|
       t.string :title
       t.string :description
-      t.integer :sharing_status
+      t.integer :sharing_status, default: 1
       t.belongs_to :user
       t.timestamps
     end

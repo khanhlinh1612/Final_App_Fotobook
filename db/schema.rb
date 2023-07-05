@@ -26,7 +26,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_04_021255) do
   create_table "albums", force: :cascade do |t|
     t.string "title"
     t.string "description"
-    t.integer "sharing_status"
+    t.integer "sharing_status", default: 1
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -37,7 +37,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_04_021255) do
     t.bigint "user_id"
     t.string "title"
     t.string "description"
-    t.integer "sharing_status"
+    t.integer "sharing_status", default: 1
     t.string "img_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

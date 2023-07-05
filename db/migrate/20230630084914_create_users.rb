@@ -7,7 +7,7 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.string :email
       t.string :password
       t.string :avatar_url
-      t.integer :status
+      t.integer :status, default: 1
       t.timestamp :last_login
       t.timestamps
     end
