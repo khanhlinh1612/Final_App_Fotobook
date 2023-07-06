@@ -6,14 +6,25 @@
         img.float-start.col-4.rounded.img-fluid.logo-image src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/2008px-Google_%22G%22_Logo.svg.png" alt="facebook_logo"
         img.col-4.rounded.img-fluid.logo-image src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/1200px-Facebook_Logo_%282019%29.png" alt="facebook_logo"
         img.col-4.float-end.rounded.img-fluid.logo-image src="https://png.pngtree.com/png-vector/20221018/ourmid/pngtree-twitter-social-media-round-icon-png-image_6315985.png" alt="facebook_logo"
-      .account-wall.position-relative.m-auto.py-3.pt-5
-        form.form-signin.w-75.m-auto.position-relative
-          .form_title.m-auto First Name
-          input.form-control#focus_field type="text" placeholder="First Name"
-          .form_title Last Name
-          input.form-control type="text" placeholder="Last Name"
-          .form_title New Password
-          input.form-control type="password" placeholder="Password"
-          .form_title Password Confirmation
-          input.form-control type="password" placeholder="Password"
-        button.btn.submit.register type="submit" Signup
+
+      .account-wall.position-relative.m-auto.py-3.pt-5.px-5
+        = form_with(model: @user, url: "/signup", method: "post") do |form|
+          - if @user.errors.any?
+              div style="color: red"
+                h2 = "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
+                ul
+                  - @user.errors.each do |error|
+                    li = error.full_message
+          form.form-signin.w-75.m-auto.position-relative
+            = form.label :first_name, class:"form_title"
+            = form.text_field :first_name, placeholder: "First Name", class: "form-control", id: "focus_field"
+            = form.label :last_name, class:"form_title"
+            = form.text_field :last_name, placeholder: "Last Name", class: "form-control"
+            = form.label :new_password, class:"form_title"
+            = form.password_field :password, placeholder: "Password", class: "form-control"
+            = form.label :confirm_password, class:"form_title"
+            = form.password_field :confirm_password, placeholder: "Password", class: "form-control"
+          div
+            = form.submit
+
+
