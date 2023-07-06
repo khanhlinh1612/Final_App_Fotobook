@@ -1,0 +1,43 @@
+.container
+  .row.position-relative
+    .col-sm-10.col-lg-4.m-auto
+      h1.text-center.login-title Fotobook Signup
+      .logo-box.m-auto.position-relative.row.my-2
+        img.float-start.col-4.rounded.img-fluid.logo-image(src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/2008px-Google_%22G%22_Logo.svg.png", alt="facebook_logo")
+        img.col-4.rounded.img-fluid.logo-image(src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/1200px-Facebook_Logo_%282019%29.png", alt="facebook_logo")
+        img.col-4.float-end.rounded.img-fluid.logo-image(src="https://png.pngtree.com/png-vector/20221018/ourmid/pngtree-twitter-social-media-round-icon-png-image_6315985.png", alt="facebook_logo")
+      .account-wall.position-relative.m-auto.py-4.pt-4.px-5
+        = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+          == render "devise/shared/error_messages", resource: resource
+          form.form-signin.w-75.m-auto.position-relative
+            .field
+              = f.label :first_name, class:"form_title"
+              br
+              = f.text_field :first_name, autofocus: true, class: "form-control"
+
+            .field
+              = f.label :last_name , class:"form_title"
+              br
+              = f.text_field :last_name, autofocus: true , class: "form-control"
+
+            .field
+              = f.label :email , class:"form_title"
+              br
+              = f.email_field :email, autocomplete: "email" , class: "form-control"
+
+            .field
+              = f.label :password , class:"form_title"
+              - if @minimum_password_length
+                em
+                  |   (#{@minimum_password_length} characters minimum)
+              br
+              = f.password_field :password, autocomplete: "new-password", class: "form-control"
+
+            .field
+              = f.label :password_confirmation, class:"form_title"
+              br
+              = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control"
+
+
+              .actions.submit-container
+                = f.submit "Sign up", class: "submit_register"

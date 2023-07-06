@@ -36,10 +36,11 @@
 
 
 }
-.nav-link.active{
+.nav-link{
     font-weight: 700 !important;
     font-size: small !important;
     color:white !important;
+    position: absolute;
 }
 .container{
     margin: auto !important;
@@ -129,7 +130,7 @@
     color: #394f8c !important;
     font-size: xx-large;
     font-weight: bold;
-    margin-top: 60px;
+    margin-top: 20px;
 }
 .submit-container {
     display: flex;
@@ -143,7 +144,6 @@
     border: 1px solid #BDBDBD;
     border-radius: 5px;
     padding: 7px 17px;
-
 }
 .text-center.new-account{
     text-decoration: none;
