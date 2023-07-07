@@ -138,7 +138,7 @@
     margin-top: 15px;
   }
 
-.submit_register{
+.submit_button{
     background-color: #3d5b98 !important;
     color:white !important;
     border: 1px solid #BDBDBD;
@@ -163,9 +163,10 @@
 
 .feeds {
     background-color: #f8f8f8;
+    over-flow:auto;
 }
 .main_feeds {
-    background-color: rgb(59, 59, 59);
+    background-color: white;
     height:max-content;
     position: relative;
 }
@@ -176,17 +177,19 @@
 }
 .left_title {
     font-weight: 700;
-    color: #a7a7a7;
+    color: #828282;
     text-decoration: none;
-    font-size: small;
-    margin-left: 0;
+    line-height: 17.58px;
+    font-size: 15px;
+    margin-top:10px;
 }
 .left_title1{
     font-weight: 700;
-    color: #3c5798;
+    line-height: 17.58px;
+    color: #3C5999;
     text-decoration: none;
-    font-size: small;
-    margin-left: 0;
+    font-size: 15px;
+    margin-top:10px;
 }
 .picture {
     background-color: #f8f8f8;
@@ -214,15 +217,11 @@
     margin-top: 0px;
 
 }
-.container.feeds{
-    margin-top:10px !important;
-}
+
 .img_ava{
     position:absolute;
     top:0;
     left:0;
-    height: 100%;
-    width: 100%;
 }
 .img_ava1,.img_ava2,.img_ava3{
     position:absolute;
@@ -257,7 +256,7 @@
 }
 .number-icon{
     font-weight: 600;
-    color: #365a9d;
+    color: #3C5999;
     font-size: small;
     margin-left: 1px;
 }
@@ -266,7 +265,7 @@
     font-weight: 700;
     font-size: small;
     position:absolute;
-    right:6%;
+    right:16%;
 }
 .time-post1{
     color:red;
@@ -347,4 +346,34 @@
     background-color:white;
     border-radius: 10px;
     bottom: 0;
+}
+.link_signup{
+    text-decoration: none;
+    margin: auto;
+    color: #3C5999;
+    font-weight: 400;
+}
+.sidebar{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+.avatar{
+    width: 35px;
+    height: 35px;
+    display: flex;
+    float: left;
+    border-radius: 50%;
+}
+
+.post_info{
+    display:flex;
+    flex-direction: row;
+    gap:2px;
+}
+.icon_heart{
+    margin-top: 2.8px;
+    color:#3C5999;
 }

@@ -1,2 +1,14 @@
-h1 Feed#index
-p Find me in app/views/feed/index.html.slim
+body.feeds
+    .container.mt-3
+        .row
+            .col-md-2
+                .sidebar
+                    a.left_title1(href="feeds.html") Feeds
+                    a.left_title(href="photos.html") My Photos
+                    a.left_title(href="albums.html") My Albums
+            .col-md-8.px-4.py-3.g-1.text-center.main_feeds
+                .btn-group.mode(role="group" aria-label="Mode switch")
+                    button.btn.btn-lg#photoMode(type="button") Photo
+                    button.btn.btn-lg#albumMode(type="button") Album
+
+                == render "feed/post"
