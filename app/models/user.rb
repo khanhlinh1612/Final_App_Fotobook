@@ -4,13 +4,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   enum status: {inactive: 0 , active: 1}
-
+  mount_uploader :avatar, AvatarUploader
   #Validate
   validates :first_name, presence: true, length: {maximum: 25}
   validates :last_name, presence: true, length: {maximum: 25}
   validates :email, presence: true,length: {maximum:255}, uniqueness:true, format: { with: URI::MailTo::EMAIL_REGEXP }
-  validates :password, presence: true, length: {maximum:64}
-  validates :password , confirmation: true
+  # validates :password, presence: true, length: {maximum:64}
+  # validates :password , confirmation: true
   #association
   has_many :photos, dependent: :destroy
   has_many :albums, dependent: :destroy

@@ -1,0 +1,3 @@
+.sidebar
+    = link_to "Feeds", root_path, class: (controller_name == "feed" ? "left_title1" : "left_title")
+    = link_to "Discover", discover_index_path, class: (controller_name == "discover" ? "left_title1" : "left_title")

@@ -1,0 +1,62 @@
+.row
+    .col-3
+        = image_tag user.avatar.url , class: "avatar_info" if user.avatar?
+    .col-md-9.col-10
+        .d-flex.flex-column.float-start
+            .d-flex.float-start
+                -if current_user.id == user.id
+                    = link_to  "Edit profile", edit_user_path(user), class: "btn btn-outline-primary btn_edit_profile mt-md-0 mt-3 ms-md-0 ms-4"
+                -else
+                    - relationship = current_user.active_relationships.find_by(followed_id: user.id)
+                    - if relationship.nil?
+                        = form_with url: "/relationships", method: :post do |form|
+                            = form.hidden_field 'relationship[followed_id]', value: user.id
+                            = form.submit "follow", class: "btn btn-outline-light btn-sm px-4 rounded-4 follow_button "
+                    / - else
+                    /     = form_with url: relationship_path(relationship), method: :post do |f|
+                    /         = f.hidden_field '_method', value: "DELETE"\
+                    /         = f.submit "ALBUM", name: "mode", value: "ALBUM", class: "btn btn-lg", id: "following_mode"
+            h1.mt-2.d-flex.float-start
+                = user.first_name + " " + user.last_name
+            == form_with url: { action: "show", params: params.permit(:mode) }, method: :get do |form|
+                .d-flex.flex-row.text-black-50
+                    = form.label :submit_button, class: "h2 d-flex flex-row"
+                        = user.photos.size
+                        h6.mt-3.ms-1.hr_vertical.fw-bold
+                            |PHOTOS
+                    = form.submit "photos", name: "mode", value:"photos", id: "submit_button", style: "display: none"
+                    = form.label :submit_button1, class: "h2 d-flex flex-row ms-3"
+                        = user.albums.size
+                        h6.mt-3.ms-1.hr_vertical.fw-bold
+                            |ALBUMS
+                    = form.submit "albums", name: "mode", value: "albums", id: "submit_button1", style: "display: none"
+                    = form.label :submit_button2, class: "h2 d-flex flex-row ms-3"
+                        = user.active_relationships.size
+                        h6.mt-3.ms-1.hr_vertical.fw-bold
+                            |FOLLOWINGS
+                    = form.submit "followings", name: "mode", value: "followings", id: "submit_button2", style: "display: none"
+                    = form.label :submit_button3, class: "h2 d-flex flex-row ms-3"
+                        = user.passive_relationships.size
+                        h6.mt-3.ms-1.hr_vertical.fw-bold
+                            |FOLLOWERS
+                    = form.submit "followers", name: "mode", value: "followers", id: "submit_button3", style: "display: none"
+- if mode == "photos" || mode == "albums"
+    -if current_user.id == user.id
+        - if mode == "photos"
+            .d-flex.justify-content-end
+                = link_to "Add Photo", new_user_photo_path(user.id), class: "btn btn-success btn-outline-warning btn-md text-light rounded-4 fw-bold"
+        - else
+            .d-flex.justify-content-end
+                = link_to "Add Album",new_user_album_path(user.id), class: "btn btn-success btn-outline-warning btn-md text-light rounded-4 fw-bold"
+    - @posts.each_slice(4) do |post_group|
+        .row.my-4
+            - post_group.each do |post|
+                .col-lg-3.col-6.text-center.post_photo
+                    == render partial: "postInfo", locals: {post: post}
+- else
+    - @posts.each_slice(4) do |post_group|
+        .row.my-4
+            - post_group.each do |post|
+                .col-lg-3.col-6.text-center.post_photo
+                    == render partial: "userInfo", locals: {user: post}
+

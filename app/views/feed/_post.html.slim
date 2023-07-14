@@ -1,27 +1,38 @@
-.row.row-cols-1.row-cols-lg-2.g-4.mb-4
-  .col-lg-6.col-12.text-center.post1
-    .picture.position-relative(data-bs-toggle="modal", data-bs-target="#exampleModal")
-      .row.row-cols-2.gx-2.h-100.position-relative
-        .col-6.h-100.position-relative
-          img.img-fluid.img-thumbnail.img_ava(src="https://daihocluathn.edu.vn/wp-content/uploads/2023/03/nuiphusi4-1024x538-1.jpg", alt="Photo / Album thumbnail")
-        .col-6.h-100.position-relative
-          .row.h-100.position-relative.py-2
-            .col-md-12
-              img.img-fluid.avatar(src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp")
-              p.name.d-flex.float-start.ms-3.text-justify Hiếu Nguyễn
-            .col-md-12
-              h5.d-block.d-flex.float-start.text-left.font-weight-bold.title_post Lorem ipsum dolor sit
-            .col-md-12.h-50.position-relative
-              p.h-100.description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            .col-md-12.post_info
-              i.fa-sharp.fa-solid.fa-heart.fa-beat.icon_heart
-              p.number-icon 123
-              p.time-post 4:56 pm 01/04/2018
-    .modal.fade#exampleModal(tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true")
-      .modal-dialog.modal-lg.modal-dialog-scrollable
-        .modal-content.px-3.py-3.position-relative
-          i.fa.fa-close.modal-close(data-bs-dismiss="modal" aria-label="Close")
-          h5.d-block.font-weight-bold.title_post.mt-3.d-flex.float-start Lorem ipsum dolor sit
-          .modal-body
-            img.img-fluid.mb-3(src="https://daihocluathn.edu.vn/wp-content/uploads/2023/03/nuiphusi4-1024x538-1.jpg", alt="Photo / Album thumbnail")
-            p.description1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  .picture.position-relative
+    .row.h-100.position-relative
+      .col-6.h-100.position-relative(data-bs-toggle="modal", data-bs-target="#exampleModal-#{post.id}")
+        == image_tag post.image.url , class:"img-fluid img-thumbnail w-100 h-100" if post.image?
+      .col-6.h-100.position-relative
+        .row.h-100.position-relative.py-2
+          .col-md-12
+            .row.pe-1
+              .col-9.d-flex.align-items-center
+                = link_to image_tag(post.user.avatar.url,class:"avatar align-items-center") ,user_path(post.user.id) if post.user.avatar?
+                = link_to post.user.first_name + " " + post.user.last_name, user_path(post.user.id), class: "d-flex float-start mt-1 name text-decoration-none "
+              .col-2.position-relative.mt-2
+                - if controller_name == "discover" && current_user.id != post.user.id
+                  - relationship = current_user.active_relationships.find_by(followed_id: post.user.id)
+                  - if relationship.nil?
+                      p.follow_label.position-absolute
+                        |follow
+                  - else
+                      p.following_label.position-absolute
+                        |following
+
+
+          .col-md-12
+            h5.title_post =post.title
+          .col-md-12.h-50.position-relative
+            p.h-100.description = post.description
+          .col-md-12.post_info
+            i.fa-sharp.fa-solid.fa-heart.fa-beat.icon_heart
+            p.number-icon 123
+            p.time-post =post.created_at.strftime("%I:%M %p %d/%m/%Y").downcase
+      .modal.fade(id="exampleModal-#{post.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true")
+        .modal-dialog.modal-lg.modal-dialog-scrollable
+          .modal-content.px-3.py-3.position-relative
+            i.fa.fa-close.modal-close(data-bs-dismiss="modal" aria-label="Close")
+            h5.d-block.font-weight-bold.title_post.mt-3.d-flex.float-start =post.title
+            .modal-body
+              img.img-fluid.mb-3(src=post.image.url alt="Photo / Album thumbnail")
+              p.description1 = post.description

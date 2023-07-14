@@ -1,0 +1,35 @@
+= javascript_include_tag 'album.js'
+= form_with(model: @user) do |form|
+  - if @user.errors.any?
+    div style="color: red"
+      h2 = "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
+      ul
+        - @user.errors.each do |error|
+          li = error.full_message
+  container.text-center.mb-5
+    .row.justify-content-center
+      .col.col-lg-2
+      .col-md-10.pt-3.col-10
+        .d-flex.flex-row.align-items-center
+          div.w-25
+          .ava_edit_block.rounded-3
+            = image_tag( user.avatar ? "https://vnn-imgs-a1.vgcloud.vn/image1.ictnews.vn/_Files/2020/03/17/trend-avatar-1.jpg": user.avatar.url ,class: "ava_edit rounded-3 position-relative", id:"edit_img")
+            == button_tag "CHANGE",class: "btn btn-sm change-avatar opacity-75", onclick:"document.getElementById('ava_upload').click(); return false;"
+            == form.file_field :avatar,type: "file", class: "invisible",id:"ava_upload", onchange:"readURL_edit(this);"
+        .d-flex.flex-row.align-items-center.mt-4
+          div.w-25
+          h6.text-primary-emphasis
+            |Basic Information
+        .d-flex.flex-row.align-items-center.mb-3
+          = form.label :first_name, "First Name", class: "form_title text-black w-25"
+          = form.text_field :first_name, placeholder: "First Name", class: "form-control text-secondary-emphasis text-secondary-emphasis text-secondary-emphasis text-secondary-emphasis text-secondary-emphasis text-secondary-emphasis text-secondary-emphasis text-secondary-emphasis text-secondary-emphasis w-50"
+        .d-flex.flex-row.align-items-center.mb-3
+            = form.label :first_name, "Last Name", class: "form_title text-black w-25"
+            = form.text_field :last_name, placeholder: "Last Name", class: "form-control text-secondary-emphasis text-secondary-emphasis text-secondary-emphasis text-secondary-emphasis text-secondary-emphasis text-secondary-emphasis text-secondary-emphasis text-secondary-emphasis text-secondary-emphasis w-50"
+        .d-flex.flex-row.align-items-center.mb-3
+            = form.label :first_name, "Email", class: "form_title text-black w-25"
+            = form.text_field :email, placeholder: "Email", class: "form-control text-secondary-emphasis text-secondary-emphasis text-secondary-emphasis text-secondary-emphasis text-secondary-emphasis text-secondary-emphasis text-secondary-emphasis text-secondary-emphasis text-secondary-emphasis w-50"
+        .d-flex.flex-row.align-items-center.mb-3
+            div.w-25
+            = form.submit "Save", class: "save-button px-3 text-light bg-success"
+

@@ -1,0 +1,10 @@
+body.feeds
+    .container.mt-3
+        .row
+            .col-md-2
+              == render "layouts/sidebar"
+            .col-md-8.px-4.py-3.g-1.main_feeds
+              .title_new_post Edit User Profile
+              hr
+              == render "form", user: @user
+              == render partial: "form_change_password", locals: {user: @user}

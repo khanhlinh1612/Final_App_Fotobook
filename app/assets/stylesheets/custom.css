@@ -1,0 +1,537 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+ .navbar{
+    background-color:#3c599a !important;
+    height:50px !important;
+    border-radius:0 !important ;
+}
+
+.title{
+    color:white;
+    font-weight: 700 !important;
+    font-size: large !important;
+
+}
+.form_control{
+    height: 40px !important;
+    font-size: small !important;
+    font-weight: 700 !important;
+    border-radius: 2px ;
+    background-color: #fefefc;
+    color: #6f6f6f !important;
+}
+
+
+.nav-link{
+    font-weight: 700 !important;
+    font-size: medium !important;
+    color:white !important;
+    position: absolute;
+}
+.container{
+    margin: auto !important;
+}
+
+.form-signin .form-signin-heading, .form-signin .checkbox
+{
+    margin-bottom: 10px;
+}
+.form-signin .checkbox
+{
+    font-weight: normal;
+}
+.form-signin .form-control
+{
+    font-size: 16px;
+    height: auto;
+    border: 1px solid #BDBDBD;
+
+}
+.form-signin .form-control:focus
+{
+    z-index: 2;
+}
+.form-signin input[type="text"]
+{
+    margin-bottom: -1px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.form-signin input[type="password"]
+{
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+.logo-image{
+    width: 65px;
+    height:65px;
+}
+.logo-box{
+    margin: auto;
+    border-radius: 12px;
+    width: 346px;
+    border: 1px solid #E0E0E0;
+    height:92px;
+    padding: 11px 37px ;
+}
+.form-signin {
+    margin:auto;
+}
+.account-wall
+{
+    margin-top: 20px;
+    background-color: #f9f9f9;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+.login-title
+{
+    color: #555;
+    font-size: 18px;
+    font-weight: 400;
+    display: block;
+}
+.profile-img
+{
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 10px;
+    display: block;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+.need-help
+{
+    margin-top: 10px;
+}
+.new-account
+{
+    display: block;
+    margin-top: 10px;
+}
+.login-title{
+    color: #394f8c !important;
+    font-size: xx-large;
+    font-weight: bold;
+    margin-top: 20px;
+}
+.submit-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+  }
+
+.submit_button{
+    background-color: #3d5b98 !important;
+    color:white !important;
+    border: 1px solid #BDBDBD;
+    border-radius: 5px;
+    padding: 7px 17px;
+}
+.text-center.new-account{
+    text-decoration: none;
+    font-size: medium;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 8px;
+    color: #394f8c !important;
+}
+.form_title {
+    font-weight: 700;
+    font-size: small;
+    margin-top: 10px;
+    margin-bottom: 3px;
+}
+select option {
+    text-align: left;
+    font-weight: 700 !important;
+    font-size: medium !important;
+}
+.feeds {
+    background-color: #f8f8f8;
+    overflow:auto;
+}
+.main_feeds {
+    background-color: white;
+    height:max-content;
+    position: relative;
+}
+.main_albums {
+    background-color: white;
+    height:max-content;
+
+}
+.left_title {
+    font-weight: 700;
+    color: #828282;
+    text-decoration: none;
+    line-height: 17.58px;
+    font-size: 15px;
+    margin-top:10px;
+}
+.left_title1{
+    font-weight: 700;
+    line-height: 17.58px;
+    color: #3C5999;
+    text-decoration: none;
+    font-size: 15px;
+    margin-top:10px;
+}
+.picture {
+    background-color: #f8f8f8;
+    border: 1px solid #e9e8ea;
+    height:inherit;
+    justify-content: center;
+    align-items: center;
+}
+#photo_mode{
+    background-color: #3d5891;
+    color: white ;
+    font-weight: 700;
+    font-size: small;
+    border: 1px solid #babbc0 ;
+}
+#album_mode{
+    background-color:#fcfbfd;
+    color: #5877a2;
+    font-weight: 700;
+    border: 1px solid #babbc0 ;
+    font-size: small;
+}
+.group_mode {
+    justify-content: center;
+    margin-bottom: 15px;
+    gap:0px;
+    display: flex;
+    flex-direction: row;
+}
+
+.img_ava{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 3px;
+	padding: 3px;
+}
+.ava_post{
+    width: 85%;
+    height: 85%;
+    object-fit: cover;
+    border-radius: 3px;
+	padding: 3px;
+}
+.ava_post2,.ava_post3{
+    position:absolute;
+    top:5%;
+    left:5%;
+    height: 85%;
+    width: 85%;
+    object-fit: cover;
+}
+.img_ava2{
+    transform: rotate(4deg);
+}
+.img_ava3{
+    transform: rotate(8deg);
+}
+
+.name{
+    font-weight:700;
+    font-size: medium;
+    color: #365a9d;
+    text-decoration: none !important;
+    margin-left: 3px;
+}
+.description{
+    display: block;/* or inline-block */
+    overflow: hidden;
+    max-height: 7.2em;
+    line-height: 1.2em;
+    margin-right: 10px;
+    padding-bottom: 5px;
+    padding-right: 3px;
+    font-size: 13px;
+    text-align:left;
+    font-weight: 700;
+    color: #6f6f6f ;
+}
+.number-icon{
+    font-weight: 600;
+    color: #3C5999;
+    font-size: small;
+    margin-left: 1px;
+}
+.time-post{
+    color: #dcdcdc;
+    font-weight: 700;
+    font-size: small;
+    position:absolute;
+    right:10%;
+}
+.time-post1{
+    color:red;
+    font-weight: 700;
+    font-size: small;
+    position:absolute;
+    right:10%;
+}
+.title_post{
+    font-weight: 700;
+    display: flex;
+    float: left;
+    justify-content: center;
+}
+.btn-close{
+    position:absolute !important;
+    right:0 !important;
+    color: black !important;
+    font-weight:bolder;
+    font-size: x-small;
+}
+.modal-close {
+      position: absolute;
+      top: 15px;
+      right: 25px;
+      color: #000000;
+      font-weight: bold;
+      cursor: pointer;
+}
+.edit_icon{
+      position: absolute;
+      top: 5px;
+      right: 2px;
+      color: #f0f0f0;
+      font-weight: bold;
+      cursor: pointer;
+}
+.description1{
+    text-align: justify;
+    color: black;
+    font-size: medium;
+    font-weight: 600;
+    line-height: 25px;
+}
+
+.post1{
+    height: 250px;
+}
+.post_photo{
+    height: 180px;
+}
+
+.album_post{
+    height: 150px !important;
+    position: relative;
+}
+.title_album_post{
+    background-color: rgba(141, 139, 139, 0.5);
+    color: white;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.private_icon{
+    bottom: 53%;
+    position: absolute;
+    right:15%;
+    z-index: 4;
+    width: 23px;
+    background-color:white;
+    border-radius: 10px;
+
+}
+.img_album_post1{
+    z-index: 3;
+}
+.img_album_post2{
+    z-index: 2;
+    transform:rotate(4deg)
+}
+.img_album_post3{
+    z-index: 1;
+    transform: rotate(8deg);
+}
+.link_signup{
+    text-decoration: none;
+    margin: auto;
+    color: #3C5999;
+    font-weight: 400;
+}
+.sidebar{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.post_info{
+    display:flex;
+    flex-direction: row;
+    gap:2px;
+}
+.icon_heart{
+    margin-top: 2.8px;
+    color:#3C5999;
+}
+.title_new_post {
+    font-size:medium;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.btn_create_post {
+    background-color: #219653;
+    color: white;
+    border-radius: 5px;
+    padding: 5px 25px;
+    margin-top: 20px;
+}
+.btn_delete_post {
+    background-color: #EB5757;
+    color: white;
+    border-radius: 5px;
+    padding: 5px 20px;
+    margin-top: 20px;
+}
+
+#files,#img_prev{
+    width: 100%;
+    height: 120px;
+    border-radius: 5px;
+    background-color: #F2F2F2;
+    border: 2px dashed #BDBDBD;
+    outline: none;
+    cursor: pointer;
+}
+
+.icon_plus{
+    color: #bdbddb;
+    font-size: 50px;
+}
+
+
+.avatar{
+    width: 35px;
+    height: 35px;
+    object-fit: cover;
+    cursor:pointer;
+    border-radius: 50%;
+}
+.ava_edit_block{
+    width: 140px;
+    height: 140px;
+    border: 1px solid wheat;
+    position: relative;
+}
+.ava_edit{
+    object-fit: cover;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+}
+.avatar_info{
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    cursor:pointer;
+    border-radius: 50%;
+    border: 1px solid wheat;
+}
+.avatar_user{
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    cursor:pointer;
+    border-radius: 50%;
+    border: 1px solid wheat;
+
+}
+.change-avatar{
+    position: absolute;
+    z-index: 2 ;
+    left:20%;
+    bottom:7% ;
+    background-color: white !important;
+    padding: 3px 15px;
+    font-weight: 600;
+    font-size: small;
+    border: 1px solid black;
+}
+.follow_button{
+    color: #f03e1a !important;
+    border: 2px solid coral !important;
+    font-weight: 700;
+}
+.follow_label{
+    height: auto;
+    background-color: white ;
+    font-size: 11px;
+    font-weight: 500;
+    color: #fa9a90;
+    position: absolute;
+    border-radius: 6px;
+    padding: 1px 4px;
+    border: 1px solid salmon;
+    left: 0;
+}
+.following_label{
+    height: auto;
+    background-color: #fa9a90;
+    font-size:8px;
+    font-weight: 600;
+    color: white;
+    position: absolute;
+    border-radius: 6px;
+    padding: 1px 4px;
+    left: 0;
+}
+.following_label1{
+    height: auto;
+    background-color: #fa9a90;
+    font-size:11px;
+    font-weight: 600;
+    color: white;
+    position: absolute;
+    border-radius: 6px;
+    padding: 1px 4px;
+    left: 0;
+}
+.btn_edit_profile{
+    text-decoration: none;
+    color: #2236ba;
+    font-weight: 660;
+    border: 2px solid #2236ba;
+    font-size: small;
+    border-radius: 20px;
+    padding: 2px 4px;
+    width: fit-content;
+}
+.hr_vertical{
+    border-right: 2px solid black;
+    padding-right: 10px;
+}
+.post_user{
+    background-color: #f8f8f8;
+    border: 1px solid #e9e8ea;
+    justify-content: center;
+    align-items: center;
+}
+.number_description{
+    font-size: small;
+}

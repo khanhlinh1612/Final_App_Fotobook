@@ -1,0 +1,16 @@
+= javascript_include_tag 'album.js'
+body.feeds
+  .container.mt-3
+    .row
+      .col-md-2
+        - if user_signed_in?
+          == render "layouts/sidebar"
+      .col-md-8.px-4.py-3.g-1.text-center.main_feeds
+        == render partial: "user", locals: {user: @user, mode: @mode}
+
+        / div
+
+        /   '|
+        /   =< link_to "Back to users", users_path
+
+        /   = button_to "Destroy this user", @user, method: :delete

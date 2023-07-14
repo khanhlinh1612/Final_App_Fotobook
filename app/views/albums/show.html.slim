@@ -1,0 +1,9 @@
+p style="color: green" = notice
+
+== render @album
+div
+  => link_to "Edit this album", edit_album_path(@album)
+  '|
+  =< link_to "Back to albums", user_albums_path(current_user)
+
+  = button_to "Destroy this album", @album, method: :delete

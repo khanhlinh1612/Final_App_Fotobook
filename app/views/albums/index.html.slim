@@ -1,0 +1,10 @@
+h1 Albums
+.row.g-3
+  #albums.row
+    - @albums.each_slice(4) do |album_group|
+      .row
+        - album_group.each do |album|
+          .col-md-3
+            == render album
+
+  = link_to "New album", new_user_album_path

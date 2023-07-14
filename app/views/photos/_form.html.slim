@@ -1,0 +1,33 @@
+= javascript_include_tag 'album.js'
+== form_with model: @photo, url: user_photos_path, method: "post" do |form|
+  - if @photo.errors.any?
+    div style="color: red"
+      h2 = "#{pluralize(@photo.errors.count, "error")} prohibited this photo from being saved:"
+      ul
+        - @photo.errors.each do |error|
+          li = error.full_message
+
+  div.container
+    .div
+      .row
+        .col-6.mb-3
+          .row
+            .col-12
+              == form.label :title, class: "form_title text-black"
+              == form.text_field :title, autofocus: true, placeholder: "Photo Title", class: "form-control"
+            .col-md-6.col-9
+              .div.d-flex.flex-column
+                == form.label :sharing_status ,"Sharing Mode", class: "form_title text-black"
+                == form.select :sharing_status, [['public','shared'],['private','limited']], {selected: 'private'}, { class: "btn dropdown-toggle dropdown-toggle-split text-black border border-dark" }
+        .col-6
+          == form.label :description, class: "form_title text-black"
+          == form.text_area :description, placeholder: "Photo Description", class: "form-control h-75"
+        .col-12
+          .row.g-2
+            .col-2.d-none#block_img
+              img#img_prev
+            .col-2
+              == button_tag id: "files", onclick:"document.getElementById('file').click(); return false;"
+                i.fa-solid.fa-plus.icon_plus
+              == form.file_field :image,type: "file", class: "invisible", id:"file", onchange:"readURL(this);"
+    = form.submit "Save", method: "post", class: "btn_create_post"

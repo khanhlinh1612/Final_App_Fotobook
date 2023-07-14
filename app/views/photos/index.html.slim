@@ -1,0 +1,11 @@
+p style="color: green" = notice
+
+h1 Photos
+
+#photos
+  - @photos.each do |photo|
+    == render photo
+    p
+      = link_to "Show this photo", photo
+
+= link_to "New photo", new_photo_path

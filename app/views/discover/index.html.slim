@@ -1,0 +1,16 @@
+= javascript_include_tag 'album.js'
+body.feeds
+  .container.mt-3
+    .row
+      .col-md-2
+        == render "layouts/sidebar"
+      .col-md-8.px-4.py-3.g-1.text-center.main_feeds
+        == form_with url: { action: "index", params: params.permit(:mode) }, method: :get, class: "group_mode" do |form|
+          = form.submit "PHOTO", name: "mode", value: "PHOTO", class: "btn btn-lg", id: (@mode == "PHOTO" ? "photo_mode" : "album_mode")
+          = form.submit "ALBUM", name: "mode", value: "ALBUM", class: "btn btn-lg", id: (@mode == "ALBUM" ? "photo_mode" : "album_mode")
+
+        - @posts.each_slice(2) do |post_group|
+          .row.g-4.my-4
+            - post_group.each do |post|
+              .col-lg-6.col-12.text-center.post1
+                == render partial: "feed/post", locals: {post: post}
