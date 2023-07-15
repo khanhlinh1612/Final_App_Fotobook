@@ -9,13 +9,9 @@
                 -else
                     - relationship = current_user.active_relationships.find_by(followed_id: user.id)
                     - if relationship.nil?
-                        = form_with url: "/relationships", method: :post do |form|
-                            = form.hidden_field 'relationship[followed_id]', value: user.id
-                            = form.submit "follow", class: "btn btn-outline-light btn-sm px-4 rounded-4 follow_button "
-                    / - else
-                    /     = form_with url: relationship_path(relationship), method: :post do |f|
-                    /         = f.hidden_field '_method', value: "DELETE"\
-                    /         = f.submit "ALBUM", name: "mode", value: "ALBUM", class: "btn btn-lg", id: "following_mode"
+                        = button_to "follow", relationships_path, params: {relationship: {followed_id: user.id}}, method: :post , class: "btn btn-outline-light btn-sm px-4 rounded-4 follow_button "
+                    - else
+                        = button_to "following", relationship_path(relationship), method: :delete, class: "btn btn-outline-light btn-sm px-4 rounded-4 following_button"
             h1.mt-2.d-flex.float-start
                 = user.first_name + " " + user.last_name
             == form_with url: { action: "show", params: params.permit(:mode) }, method: :get do |form|

@@ -478,6 +478,12 @@ select option {
     border: 2px solid coral !important;
     font-weight: 700;
 }
+.following_button{
+    background-color: coral !important;
+    border: 2px solid coral !important;
+    color: white !important;
+    font-weight: 700;
+}
 .follow_label{
     height: auto;
     background-color: white ;

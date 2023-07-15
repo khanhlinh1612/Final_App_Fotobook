@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       patch "update_password"
     end
   end
+
   resources :relationships, only: [:create, :destroy]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # Defines the root path route ("/")
