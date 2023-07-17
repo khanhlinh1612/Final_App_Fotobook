@@ -6,6 +6,6 @@ body.feeds
             .col-md-8.px-4.py-3.g-1.main_feeds
               .title_new_post New Photo
               hr
-              == render "form", photo: @photo
+                == render "form", photo: @photo
               / div
               / = link_to "Back to albums", user_albums_path

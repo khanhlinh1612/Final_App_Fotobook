@@ -1,54 +1,58 @@
 = javascript_include_tag 'album.js'
 .row
-    .col-3
-        = image_tag user.avatar.url , class: "avatar_info" if user.avatar?
-    .col-md-9.col-10
-        .d-flex.flex-column.float-start
-            .d-flex.float-start
-                -if current_user.id == user.id
-                    = link_to  "Edit profile", edit_user_path(user), class: "btn btn-outline-primary btn_edit_profile mt-md-0 mt-3 ms-md-0 ms-4"
-                -else
-                    - relationship = current_user.active_relationships.find_by(followed_id: user.id)
-                    - if relationship.nil?
-                        = button_to "follow", relationships_path, params: {relationship: {followed_id: user.id}}, method: :post , class: "btn btn-outline-light btn-sm px-4 rounded-4 follow_button "
-                    - else
-                        = button_to "following", relationship_path(relationship), method: :delete, class: "btn btn-outline-light btn-sm px-4 rounded-4 following_button"
-            h1.mt-2.d-flex.float-start
-                = user.first_name + " " + user.last_name
-            .d-flex.flex-row.text-black-50
-                = button_to user_path, params: {mode: "photos"}, method: :get, class: "btn btn-sm btn-outline-light d-flex flex-row me-2 color_button #{mode == "photos" ? "text-primary" : "text-secondary" }", id:'photos' do
-                    h2 = user.photos.size
-                    .mt-3.ms-1.hr_vertical.fw-bold.pe-4 PHOTOS
-
-                = button_to user_path, params: {mode: "albums"}, method: :get, class: "btn btn-sm btn-outline-light d-flex flex-row me-2 color_button #{mode == "albums" ? "text-primary": "text-secondary" }" , id:'albums' do
-                    h2 = user.albums.size
-                    .mt-3.ms-1.hr_vertical.fw-bold.pe-4 ALBUMS
-
-                = button_to user_path, params: {mode: "followings"}, method: :get, class: "btn btn-sm btn-outline-light d-flex flex-row me-2 color_button #{mode == "followings" ? "text-primary" : "text-secondary" }" , id: 'followings' do
-                    h2 = user.active_relationships.size
-                    .mt-3.ms-1.hr_vertical.fw-bold.pe-4 FOLLOWINGS
-                = button_to user_path, params: {mode: "followers"}, method: :get, class: "btn btn-sm btn-outline-light d-flex flex-row me-2 color_button #{mode == "followers" ? "text-primary" : "text-secondary" }", id: 'followers' do
-                    h2 = user.passive_relationships.size
-                    .mt-3.ms-1.fw-bold.pe-4 FOLLOWERS
-
+  .col-3
+    = image_tag user.avatar.url, class: "avatar_info" if user.avatar?
+  .col-md-9.col-10
+    .d-flex.flex-column.float-start
+      .d-flex.float-start
+        - if current_user.id == user.id
+          = link_to "Edit profile", edit_user_path(user), class: "btn btn-outline-primary btn_edit_profile mt-md-0 mt-3 ms-md-0 ms-4"
+        - else
+          - relationship = current_user.active_relationships.find_by(followed_id: user.id)
+          - if relationship.nil?
+            = button_to "follow", relationships_path, params: {relationship: {followed_id: user.id}}, method: :post, class: "btn btn-outline-light btn-sm px-4 rounded-4 follow_button"
+          - else
+            = button_to "following", relationship_path(relationship), method: :delete, class: "btn btn-outline-light btn-sm px-4 rounded-4 following_button"
+      h1.mt-2.d-flex.float-start
+        = user.first_name + " " + user.last_name
+      .d-flex.flex-row.text-black-50
+        = button_to user_path, params: {mode: "photos"}, method: :get, class: "btn btn-sm btn-outline-light d-flex flex-row me-1 me-md-2 color_button #{mode == "photos" ? "text-primary" : "text-secondary" }", id: 'photos' do
+          h2
+            - if user.id == current_user.id
+              = user.photos.size
+            - else
+              = user.photos.where(sharing_status: "shared").size
+          .mt-3.ms-1.hr_vertical.fw-bold.pe-md-4.pe-1 PHOTOS
+        = button_to user_path, params: {mode: "albums"}, method: :get, class: "btn btn-sm btn-outline-light d-flex flex-row me-1 me-md-2 color_button #{mode == "albums" ? "text-primary": "text-secondary" }" , id:'albums' do
+          h2
+            - if user.id == current_user.id
+              = user.albums.size
+            - else
+              = user.albums.where(sharing_status: "shared").size
+          .mt-3.ms-1.hr_vertical.fw-bold.pe-md-4.pe-1 ALBUMS
+        = button_to user_path, params: {mode: "followings"}, method: :get, class: "btn btn-sm btn-outline-light d-flex flex-row me-1 me-md-2 color_button #{mode == "followings" ? "text-primary" : "text-secondary" }", id: 'followings' do
+          h2 = user.active_relationships.size
+          .mt-3.ms-1.hr_vertical.fw-bold.pe-md-4.pe-1 FOLLOWINGS
+        = button_to user_path, params: {mode: "followers"}, method: :get, class: "btn btn-sm btn-outline-light d-flex flex-row me-1 me-md-2 color_button #{mode == "followers" ? "text-primary" : "text-secondary" }", id: 'followers' do
+          h2 = user.passive_relationships.size
+          .mt-3.ms-1.fw-bold.pe-md-4.pe-1 FOLLOWERS
 
 - if mode == "photos" || mode == "albums"
-    -if current_user.id == user.id
-        - if mode == "photos"
-            .d-flex.justify-content-end
-                = link_to "Add Photo", new_user_photo_path(user.id), class: "btn btn-success btn-outline-warning btn-md text-light rounded-4 fw-bold"
-        - else
-            .d-flex.justify-content-end
-                = link_to "Add Album",new_user_album_path(user.id), class: "btn btn-success btn-outline-warning btn-md text-light rounded-4 fw-bold"
-    - @posts.each_slice(4) do |post_group|
-        .row.my-4
-            - post_group.each do |post|
-                .col-lg-3.col-6.text-center.post_photo
-                    == render partial: "postInfo", locals: {post: post, mode: mode}
+  - if current_user.id == user.id
+    - if mode == "photos"
+      .d-flex.justify-content-end
+        = link_to "Add Photo", new_user_photo_path(user.id), class: "btn btn-success btn-outline-warning btn-md text-light rounded-4 fw-bold"
+    - else
+      .d-flex.justify-content-end
+        = link_to "Add Album", new_user_album_path(user.id), class: "btn btn-success btn-outline-warning btn-md text-light rounded-4 fw-bold"
+  - posts.each_slice(4) do |post_group|
+    .row.my-4
+      - post_group.each do |post|
+        .col-lg-3.col-6.text-center.post_photo
+          == render partial: "postInfo", locals: {post: post, mode: mode}
 - else
-    - @posts.each_slice(4) do |post_group|
-        .row.my-4
-            - post_group.each do |post|
-                .col-lg-3.col-6.text-center.post_photo
-                    == render partial: "userInfo", locals: {user: post, mode: mode}
-
+  - posts.each_slice(4) do |post_group|
+    .row.my-4
+      - post_group.each do |post|
+        .col-lg-3.col-6.text-center.post_photo
+          == render partial: "userInfo", locals: {user: post, mode: mode}

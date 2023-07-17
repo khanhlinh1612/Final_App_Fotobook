@@ -1,6 +1,7 @@
 = javascript_include_tag 'album.js'
 = form_with(model: @user) do |form|
   - if @user.errors.any?
+    == action_name
     div style="color: red"
       h2 = "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
       ul
@@ -15,7 +16,7 @@
           .ava_edit_block.rounded-3
             = image_tag( user.avatar ? user.avatar.url : "https://vnn-imgs-a1.vgcloud.vn/image1.ictnews.vn/_Files/2020/03/17/trend-avatar-1.jpg" ,class: "ava_edit rounded-3 position-relative", id:"edit_img")
             == button_tag "CHANGE",class: "btn btn-sm change-avatar opacity-75", onclick:"document.getElementById('ava_upload').click(); return false;"
-            == form.file_field :avatar,type: "file", class: "invisible",id:"ava_upload", onchange:"readURL_edit(this);"
+            == form.file_field :avatar,type: "file", class: "invisible",id:"ava_upload", onchange:"readURL_edit(this, 'edit_img', 'ava');"
         .d-flex.flex-row.align-items-center.mt-4
           div.w-25
           h6.text-primary-emphasis
@@ -32,4 +33,3 @@
         .d-flex.flex-row.align-items-center.mb-3
             div.w-25
             = form.submit "Save", class: "save-button px-3 text-light bg-success"
-

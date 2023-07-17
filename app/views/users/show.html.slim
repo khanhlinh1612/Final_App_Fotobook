@@ -6,7 +6,7 @@ body.feeds
         - if user_signed_in?
           == render "layouts/sidebar"
       .col-md-8.px-4.py-3.g-1.text-center.main_feeds
-        == render partial: "user", locals: {user: @user, mode: @mode}
+        == render partial: "user", locals: {user: @user, mode: @mode, posts: @posts}
 
         / div
 

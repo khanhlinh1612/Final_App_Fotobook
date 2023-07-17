@@ -1,10 +1,16 @@
-div
+div.position-relative
     .album_post.position-relative
         - if post.sharing_status == "limited"
             i.fa.fa-lock.private_icon
-        = image_tag post.image.url, class: 'w-75 h-100 img_album_post1 rounded-2'
+        = image_tag post.image.url, class: 'h-100 img_album_post1 rounded-2'
+        -if post.user_id == current_user.id
+            -if post.is_a?(Photo)
+                = link_to "EDIT",edit_photo_path(post), class: "btn btn-sm change_photo_btn opacity-75 btn-outline-dark rounded-3"
+            -else
+                = link_to "EDIT",edit_album_path(post), method: :get, class: "btn btn-sm change_photo_btn btn-outline-light opacity-75 rounded-1"
         - if post.is_a?(Album)
-            = image_tag post.image.url, class: 'w-75 h-100 img_album_post2 rounded-2'
-            = image_tag post.image.url, class: 'w-75 h-100 img_album_post3 rounded-2'
-    .text-secondary.h6.mt-1.text_title_post
+            = image_tag post.image.url, class: 'h-100 img_album_post2 rounded-1'
+            = image_tag post.image.url, class: 'h-100 img_album_post3 rounded-1'
+    .text-secondary.h6.mt-1.text_title_post.text-truncate.w-75
         = post.title
+

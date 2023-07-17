@@ -14,10 +14,18 @@ class UsersController < ApplicationController
       @mode = "photos"
     end
     if @mode == "photos"
-      @posts = Photo.where(user_id: @user.id).order(created_at: :desc)
+      if @user.id == current_user.id
+        @posts = Photo.where(user_id: @user.id).order(created_at: :desc)
+      else
+        @posts = Photo.where(user_id: @user.id,sharing_status:"shared").order(created_at: :desc)
+      end
     elsif @mode == "albums"
-      @posts = Album.where(user_id: @user.id).order(created_at: :desc)
-    elsif @mode == "followings"
+      if @user.id == current_user.id
+        @posts = Album.where(user_id: @user.id).order(created_at: :desc)
+      else
+        @posts = Album.where(user_id: @user.id,sharing_status:"shared").order(created_at: :desc)
+      end
+      elsif @mode == "followings"
       @posts = User.where(id: @user.active_relationships.pluck(:followed_id))
     else
       @posts = User.where(id: @user.passive_relationships.pluck(:follower_id))

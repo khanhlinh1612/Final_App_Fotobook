@@ -1,10 +1,19 @@
-h1 Editing photo
 
-== render "form", photo: @photo
+body.feeds
+    .container.mt-3
+        .row
+            .col-md-2
+              == render "layouts/sidebar"
+            .col-md-8.px-4.py-3.g-1.main_feeds
+              .title_new_post Edit Photo
+              .d-flex.justify-content-end
+                = link_to "Back", user_path(current_user.id), class: "btn btn-primary px-3 btn-sm btn_back"
+              hr
+                == render "form_edit", photo: @photo
 
 br
 
 div
   => link_to "Show this photo", @photo
-  '|
-  =< link_to "Back to photos", photos_path
+  / '|
+  / =< link_to "Back to photos", user_photos_path
