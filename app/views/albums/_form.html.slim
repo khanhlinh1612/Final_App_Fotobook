@@ -16,7 +16,7 @@
             .col-12
               == form.label :title, class: "form_title text-black"
               == form.text_field :title, autofocus: true, placeholder: "Album Title", class: "form-control"
-            .col-md-5.col-9
+            .col-md-6.col-9
               .div.d-flex.flex-column
                 == form.label :sharing_status ,"Sharing Mode", class: "form_title text-black"
                 == form.select :sharing_status, [['public','shared'],['private','limited']], {selected: 'shared'}, { class: "btn btn-md dropdown-toggle dropdown-toggle-split text-secondary border border-dark form_control1" }

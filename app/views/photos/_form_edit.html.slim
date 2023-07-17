@@ -1,5 +1,5 @@
 = javascript_include_tag 'album.js'
-== form_with model: @photo, url: photo_path, method: "patch" do |form|
+== form_with model: @photo, url: photo_path, method: "patch", class: "position-relative" do |form|
   - if @photo.errors.any?
     div style="color: red"
       h2 = "#{pluralize(@photo.errors.count, "error")} prohibited this photo from being saved:"
@@ -32,4 +32,10 @@
               == button_tag id: "files", onclick:"document.getElementById('file').click(); return false;"
                 i.fa-solid.fa-plus.icon_plus
               == form.file_field :image , type: "file", class: "invisible", id:"file", onchange:"readURL(this,'img_prev','edit');"
-    = form.submit "Save", method: "post", class: "btn_create_post"
+    .d-flex.flex-row
+  = form.submit "Save", method: "post", class: "btn_create_post"
+= button_to photo, method: :delete, class: "btn_destroy_post ms-3 " do
+  .d-flex.flex-row.text-center.align-items-center
+    i.fa-solid.fa-trash-can
+    p.m-0.ms-2 Delete
+

@@ -25,8 +25,10 @@
           .col-md-12.h-50.position-relative
             p.h-100.description = post.description
           .col-md-12.post_info.align-items-center
+            / i.fa-duotone.fa-heart icon_before_like
             i.fa-sharp.fa-solid.fa-heart.fa-beat.icon_heart.mb-3.me-1
-            p.number-icon 123
+            p.number-icon
+              = (post.total_heart? ? post.total_heart : "0").to_s
             p.time-post =post.created_at.in_time_zone(+7).strftime("%I:%M %p %d/%m/%Y").downcase
       .modal.fade(id="exampleModal-#{post.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true")
         .modal-dialog.modal-lg.modal-dialog-scrollable

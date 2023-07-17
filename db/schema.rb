@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_14_033441) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_17_094907) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -59,6 +59,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_14_033441) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image"
+    t.integer "total_heart"
     t.index ["user_id"], name: "index_albums_on_user_id"
   end
 
@@ -71,6 +72,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_14_033441) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "album_id"
+    t.integer "total_heart"
     t.index ["album_id"], name: "index_photos_on_album_id"
     t.index ["user_id"], name: "index_photos_on_user_id"
   end

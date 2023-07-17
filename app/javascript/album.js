@@ -6,6 +6,7 @@ function readURL(input, id, mode) {
         $('#' + id )
         .attr('src', e.target.result)
         };
+    }
     if ( mode == "new" || mode == "edit" || mode == "edit_album" ) {
       element = document.getElementById('block_img')
       element.classList.remove('d-none')
@@ -14,8 +15,7 @@ function readURL(input, id, mode) {
       element1 = document.getElementById('block_change_img')
       element1.classList.add('d-none')
     }
-      reader.readAsDataURL(input.files[0]);
-    }
+    reader.readAsDataURL(input.files[0]);
 };
 function deleteImage(){
   document.getElementById('block_img').classList.add('d-none')

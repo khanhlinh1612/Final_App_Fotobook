@@ -53,7 +53,7 @@ class AlbumsController < ApplicationController
     @album.destroy
 
     respond_to do |format|
-      format.html { redirect_to albums_url, notice: "Album was successfully destroyed." }
+      format.html {redirect_to user_path(current_user, mode: "albums"), notice: "Album was successfully destroyed." }
       format.json { head :no_content }
     end
   end

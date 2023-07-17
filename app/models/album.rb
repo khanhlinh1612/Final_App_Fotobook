@@ -20,5 +20,6 @@ class Album < ApplicationRecord
   private
     def default_value
       self.sharing_status ||= 1
+      self.total_heart ||= 0
     end
 end
