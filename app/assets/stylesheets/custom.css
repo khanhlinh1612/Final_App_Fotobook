@@ -207,6 +207,7 @@ select option {
     font-weight: 700;
     font-size: small;
     border: 1px solid #babbc0 ;
+    border-radius: 0px;
 }
 #album_mode{
     background-color:#fcfbfd;
@@ -214,6 +215,7 @@ select option {
     font-weight: 700;
     border: 1px solid #babbc0 ;
     font-size: small;
+    border-radius: 0px;
 }
 .group_mode {
     justify-content: center;
@@ -279,9 +281,9 @@ select option {
     margin-left: 1px;
 }
 .time-post{
-    color: #dcdcdc;
+    color: #cccccc;
     font-weight: 700;
-    font-size: small;
+    font-size: 11px;
     position:absolute;
     right:10%;
 }
@@ -347,24 +349,34 @@ select option {
     text-overflow: ellipsis;
 }
 .private_icon{
-    bottom: 53%;
+    bottom: 80%;
     position: absolute;
-    right:15%;
+    right:18%;
     z-index: 4;
     width: 23px;
     background-color:white;
-    border-radius: 10px;
+    border-radius: 50%;
+    padding: 2px 2px;
 
 }
 .img_album_post1{
     z-index: 3;
+    position: absolute;
+    top: 0%;
+    left: 12.5%;
 }
 .img_album_post2{
     z-index: 2;
+    position: absolute;
+    top: 0%;
+    left: 12.5%;
     transform:rotate(4deg)
 }
 .img_album_post3{
     z-index: 1;
+    position: absolute;
+    top: 0%;
+    left: 12.5%;
     transform: rotate(8deg);
 }
 .link_signup{
@@ -387,7 +399,6 @@ select option {
     gap:2px;
 }
 .icon_heart{
-    margin-top: 2.8px;
     color:#3C5999;
 }
 .title_new_post {
@@ -532,6 +543,9 @@ select option {
     border-right: 2px solid black;
     padding-right: 10px;
 }
+.color_button{
+    border: 1px solid white;
+}
 .post_user{
     background-color: #f8f8f8;
     border: 1px solid #e9e8ea;
@@ -540,4 +554,14 @@ select option {
 }
 .number_description{
     font-size: small;
+}
+.text_title_post{
+    display: block;/* or inline-block */
+    overflow: hidden;
+    max-height: 1.2em;
+    line-height: 1.2em;
+    font-size: 13px;
+    text-align:center;
+    font-weight: 700;
+    color: #6f6f6f ;
 }

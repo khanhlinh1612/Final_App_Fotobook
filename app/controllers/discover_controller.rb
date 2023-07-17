@@ -10,9 +10,9 @@ class DiscoverController < ApplicationController
 
     if user_signed_in?
       if @mode == "PHOTO"
-        @posts = Photo.all.order(created_at: :desc)
+        @posts = Photo.all.where(sharing_status: "shared").order(created_at: :desc)
       else
-        @posts = Album.all.order(created_at: :desc)
+        @posts = Album.all.where(sharing_status: "shared").order(created_at: :desc)
       end
     end
   end

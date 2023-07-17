@@ -24,10 +24,10 @@
             h5.title_post =post.title
           .col-md-12.h-50.position-relative
             p.h-100.description = post.description
-          .col-md-12.post_info
-            i.fa-sharp.fa-solid.fa-heart.fa-beat.icon_heart
+          .col-md-12.post_info.align-items-center
+            i.fa-sharp.fa-solid.fa-heart.fa-beat.icon_heart.mb-3.me-1
             p.number-icon 123
-            p.time-post =post.created_at.strftime("%I:%M %p %d/%m/%Y").downcase
+            p.time-post =post.created_at.in_time_zone(+7).strftime("%I:%M %p %d/%m/%Y").downcase
       .modal.fade(id="exampleModal-#{post.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true")
         .modal-dialog.modal-lg.modal-dialog-scrollable
           .modal-content.px-3.py-3.position-relative

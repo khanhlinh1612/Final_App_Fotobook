@@ -1,7 +1,10 @@
-.album_post.position-relative
-    i.fa.fa-lock.private_icon
-    = image_tag post.image.url, class: 'w-75 h-100 img_album_post1'
-    = image_tag post.image.url, class: 'w-75 h-100 img_album_post2'
-    = image_tag post.image.url, class: 'w-75 h-100 img_album_post3'
-
-
+div
+    .album_post.position-relative
+        - if post.sharing_status == "limited"
+            i.fa.fa-lock.private_icon
+        = image_tag post.image.url, class: 'w-75 h-100 img_album_post1 rounded-2'
+        - if post.is_a?(Album)
+            = image_tag post.image.url, class: 'w-75 h-100 img_album_post2 rounded-2'
+            = image_tag post.image.url, class: 'w-75 h-100 img_album_post3 rounded-2'
+    .text-secondary.h6.mt-1.text_title_post
+        = post.title
