@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :like_albums, only: [:create, :destroy]
+  resources :like_photos, only: [:create, :destroy]
   get 'discover/index', to: "discover#index"
   root to: 'feed#index'
   devise_for :users

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_17_094907) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_18_025752) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -59,8 +59,27 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_17_094907) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image"
-    t.integer "total_heart"
     t.index ["user_id"], name: "index_albums_on_user_id"
+  end
+
+  create_table "like_albums", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "album_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["album_id"], name: "index_like_albums_on_album_id"
+    t.index ["user_id", "album_id"], name: "index_like_albums_on_user_id_and_album_id", unique: true
+    t.index ["user_id"], name: "index_like_albums_on_user_id"
+  end
+
+  create_table "like_photos", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "photo_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["photo_id"], name: "index_like_photos_on_photo_id"
+    t.index ["user_id", "photo_id"], name: "index_like_photos_on_user_id_and_photo_id", unique: true
+    t.index ["user_id"], name: "index_like_photos_on_user_id"
   end
 
   create_table "photos", force: :cascade do |t|
@@ -72,7 +91,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_17_094907) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "album_id"
-    t.integer "total_heart"
     t.index ["album_id"], name: "index_photos_on_album_id"
     t.index ["user_id"], name: "index_photos_on_user_id"
   end
@@ -106,6 +124,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_17_094907) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "like_albums", "albums"
+  add_foreign_key "like_albums", "users"
+  add_foreign_key "like_photos", "photos"
+  add_foreign_key "like_photos", "users"
   add_foreign_key "photos", "users"
   add_foreign_key "relationships", "users", column: "followed_id"
   add_foreign_key "relationships", "users", column: "follower_id"

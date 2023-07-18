@@ -25,10 +25,48 @@
           .col-md-12.h-50.position-relative
             p.h-100.description = post.description
           .col-md-12.post_info.align-items-center
-            / i.fa-duotone.fa-heart icon_before_like
-            i.fa-sharp.fa-solid.fa-heart.fa-beat.icon_heart.mb-3.me-1
-            p.number-icon
-              = (post.total_heart? ? post.total_heart : "0").to_s
+            -if user_signed_in?
+              -if @mode == "PHOTO"
+                - like = current_user.like_photos.find_by(photo_id: post.id)
+                - if like.nil?
+                  = button_to like_photos_path , params: {like_photo: {photo_id: post.id}}, method: :post, class: "button_like" do
+                    .d-flex.flex-row
+                      i.fa-sharp.fa-solid.fa-heart.fa-beat.icon_heart.me-1.text-secondary
+                      p.number-icon
+                        = (post.like_photos.size).to_s
+                - else
+                  = button_to like_photo_path(like), method: :delete, class: "button_like" do
+                    .d-flex.flex-row
+                      i.fa-sharp.fa-solid.fa-heart.fa-beat.icon_heart.me-1
+                      p.number-icon
+                        = (post.like_photos.size).to_s
+              -else
+                - like = current_user.like_albums.find_by(album_id: post.id)
+                - if like.nil?
+                  = button_to like_albums_path , params: {like_album: {album_id: post.id}}, method: :post, class: "button_like" do
+                    .d-flex.flex-row
+                      i.fa-sharp.fa-solid.fa-heart.fa-beat.icon_heart.me-1.text-secondary
+                      p.number-icon
+                        = (post.like_albums.size).to_s
+                - else
+                  = button_to like_album_path(like), method: :delete, class: "button_like" do
+                    .d-flex.flex-row
+                      i.fa-sharp.fa-solid.fa-heart.fa-beat.icon_heart.me-1
+                      p.number-icon
+                        = (post.like_albums.size).to_s
+            -else
+              -if @mode == "PHOTO"
+                = button_to like_photos_path , params: {like_photo: {photo_id: post.id}}, method: :post, class: "button_like" do
+                  .d-flex.flex-row
+                    i.fa-sharp.fa-solid.fa-heart.fa-beat.icon_heart.me-1.text-secondary
+                    p.number-icon
+                      = (post.like_photos.size).to_s
+              -else
+                = button_to like_albums_path , params: {like_album: {album_id: post.id}}, method: :post, class: "button_like" do
+                  .d-flex.flex-row
+                    i.fa-sharp.fa-solid.fa-heart.fa-beat.icon_heart.me-1.text-secondary
+                    p.number-icon
+                      = (post.like_albums.size).to_s
             p.time-post =post.created_at.in_time_zone(+7).strftime("%I:%M %p %d/%m/%Y").downcase
       .modal.fade(id="exampleModal-#{post.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true")
         .modal-dialog.modal-lg.modal-dialog-scrollable

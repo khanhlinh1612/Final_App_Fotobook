@@ -1,0 +1,2 @@
+module LikeAlbumsHelper
+end

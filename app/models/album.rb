@@ -15,11 +15,10 @@ class Album < ApplicationRecord
   mount_uploader :image, ImageUploader
 
   has_many :photos , :through => :album_photos
-
+  has_many :like_albums
   after_validation :default_value
   private
     def default_value
       self.sharing_status ||= 1
-      self.total_heart ||= 0
     end
 end

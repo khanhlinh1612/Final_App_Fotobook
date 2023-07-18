@@ -632,5 +632,8 @@ select option {
     font-weight: 700;
     color:lightgray;
     cursor: pointer;
-
+}
+.button_like{
+    border:none ;
+    background-color:  #f8f8f8;
 }
