@@ -14,12 +14,11 @@
             h6.text-primary.number_description
                 | PHOTOS
     div.row.d-flex.justify-content-center.align-items-center.mx-auto
-        - follow =  current_user.active_relationships.find_by(followed_id: user.id)
-        - if follow.nil?
-            div.d-block
-                p.follow_label.w-50.ms-5
-                    |follow
-        - else
-            div.d-block
-                p.following_label1.w-50.ms-5
-                    |following
+        - if current_user.id != user.id
+            - follow =  current_user.active_relationships.find_by(followed_id: user.id)
+            - if follow.nil?
+                div.d-block.mb-1
+                    = button_to "follow", relationships_path, params: {relationship: {followed_id: user.id}}, method: :post, class: "btn follow_label btn-outline-warning w-50 ms-5"
+            - else
+                div.d-block.mb-1
+                    = button_to "following", relationship_path(follow), method: :delete, class: "btn following_label btn-outline-warning w-50 ms-5"

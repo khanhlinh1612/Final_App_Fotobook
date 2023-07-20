@@ -15,9 +15,9 @@ class UsersController < ApplicationController
     end
     if @mode == "photos"
       if @user.id == current_user.id
-        @posts = Photo.where(user_id: @user.id).order(created_at: :desc)
+        @posts = Photo.where(user_id: @user.id).where(album_id: nil).order(created_at: :desc)
       else
-        @posts = Photo.where(user_id: @user.id,sharing_status:"shared").order(created_at: :desc)
+        @posts = Photo.where(user_id: @user.id,sharing_status:"shared").where(album_id: nil).order(created_at: :desc)
       end
     elsif @mode == "albums"
       if @user.id == current_user.id

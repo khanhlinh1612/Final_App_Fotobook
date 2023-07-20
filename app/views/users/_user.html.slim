@@ -19,9 +19,9 @@
         = button_to user_path, params: {mode: "photos"}, method: :get, class: "btn btn-sm btn-outline-light d-flex flex-row me-1 me-md-2 color_button #{mode == "photos" ? "text-primary" : "text-secondary" }", id: 'photos' do
           h2
             - if user.id == current_user.id
-              = user.photos.size
+              = user.photos.where(album_id: nil).size
             - else
-              = user.photos.where(sharing_status: "shared").size
+              = user.photos.where(album_id: nil, sharing_status: "shared").size
           .mt-3.ms-1.hr_vertical.fw-bold.pe-md-4.pe-1 PHOTOS
         = button_to user_path, params: {mode: "albums"}, method: :get, class: "btn btn-sm btn-outline-light d-flex flex-row me-1 me-md-2 color_button #{mode == "albums" ? "text-primary": "text-secondary" }" , id:'albums' do
           h2
@@ -49,7 +49,10 @@
     .row.my-4
       - post_group.each do |post|
         .col-lg-3.col-6.text-center.post_photo
-          == render partial: "postInfo", locals: {post: post, mode: mode}
+          - if mode == "photos"
+            == render partial: "photoInfo", locals: {post: post, mode: mode}
+          -else
+            = render partial: "albumInfo", locals: {post: post, mode: mode}
 - else
   - posts.each_slice(4) do |post_group|
     .row.my-4

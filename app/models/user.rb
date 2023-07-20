@@ -14,8 +14,8 @@ class User < ApplicationRecord
   #association
   has_many :photos, dependent: :destroy
   has_many :albums, dependent: :destroy
-  has_many :like_photos
-  has_many :like_albums
+  has_many :like_photos , dependent: :destroy
+  has_many :like_albums , dependent: :destroy
   has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :passive_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :following, through: :active_relationships, source: :followed

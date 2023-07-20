@@ -1,18 +1,18 @@
 = javascript_include_tag 'album.js'
-== form_with model: @album, url: album_path, method: "patch", class: "position-relative" do |form|
-  - if @album.errors.any?
-    div style="color: red"
-      h2 = "#{pluralize(@album.errors.count, "error")} prohibited this album from being saved:"
-      ul
-        - @album.errors.each do |error|
-          li = error.full_message
-
-  div.container-fuild
+div.container-fuild
+  == form_with model: @album, url: album_path, method: "patch", class: "position-relative" do |form|
+    - if @album.errors.any?
+      div style="color: red"
+        h2 = "#{pluralize(@album.errors.count, "error")} prohibited this album from being saved:"
+        ul
+          - @album.errors.each do |error|
+            li = error.full_message
     .div
-      .row
-        .col-6.mb-3
+      .row.mb-3
+        .col-6
           .row
             .col-12
+              h1
               == form.label :title, class: "form_title text-black"
               == form.text_field :title, autofocus: true, placeholder: "Album Title", class: "form-control"
             .col-md-6.col-9
@@ -22,18 +22,33 @@
         .col-6.d-flex.flex-column
           == form.label :description, class: "form_title text-black"
           == form.text_area :description, placeholder: "Album Description", class: "form_control1 h-75"
-        .col-12
-          .row.g-1.mt-3
-            .col-4.col-md-3#block_img onclick="deleteImage()"
-              = image_tag(album.image.url,id:"img_prev",class:"position-relative")
-              .delete-icon.w-75
-                i.fa-sharp.fa-solid.fa-xmark.fa-xl
-            .col-4.col-md-3.d-none#block_change_img
-              == button_tag id: "files", onclick:"document.getElementById('file').click(); return false;"
-                i.fa-solid.fa-plus.icon_plus
-              == form.file_field :image , type: "file", class: "invisible", id:"file", onchange:"readURL(this,'img_prev','new');"
+      .row.g-1.mt-3
+        - if @photos&.present?
+          - @photos.each do |photo|
+            .col-4.col-md-3#block_img
+              = render partial: "form_edit_photo", locals: {photo: photo, album: album}
+        .col-4.col-md-3
+          = link_to new_user_album_path(current_user, params: { album_id: album.id }), class:"text-decoration-none add_photo d-flex justify-content-center align-items-center" do
+            i.fa-solid.fa-plus.icon_plus
     = form.submit "Save", method: "post", class: "btn_create_post btn-md"
-= button_to album, method: :delete, class: "btn_destroy_post ms-3 " do
+
+
+
+
+button.btn_destroy_post(type="button" data-bs-toggle="modal" data-bs-target="#exampleModal")
   .d-flex.flex-row.text-center.align-items-center
     i.fa-solid.fa-trash-can
     p.m-0.ms-2 Delete
+
+.modal.fade(id="exampleModal" tabindex="0" aria-labelledby="exampleModalLabel" aria-hidden="true")
+  .modal-dialog
+    .modal-content
+      .modal-header
+        h5.modal-title#exampleModalLabel Delete Confirmation
+        i.fa.fa-close.modal-close(data-bs-dismiss="modal" aria-label="Close")
+      .modal-body
+        | Are you sure?
+      .modal-footer
+        button.btn.btn-primary(data-bs-dismiss="modal") Close
+        = button_to album, method: :delete, class: "btn btn-danger"
+          |Delete

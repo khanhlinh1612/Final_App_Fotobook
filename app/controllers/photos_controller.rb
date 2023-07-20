@@ -49,10 +49,16 @@ class PhotosController < ApplicationController
 
   # DELETE /photos/1 or /photos/1.json
   def destroy
-    @photo.destroy
-    respond_to do |format|
-      format.html { redirect_to user_path(current_user, mode: "photos"), notice: "Photo was successfully destroyed." }
-      format.json { head :no_content }
+    if params[:mode] == "delete_for_album"
+      @photo.destroy
+      redirect_to edit_album_path(id:params[:album_id])
+    else
+      @photo.destroy
+      respond_to do |format|
+        format.html { redirect_to user_path(current_user, mode: "photos"), notice: "Photo was successfully destroyed." }
+        format.json { head :no_content }
+        format.js   { render layout: false }
+      end
     end
   end
 

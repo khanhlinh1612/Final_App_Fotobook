@@ -1,0 +1,11 @@
+div.position-relative
+    .album_post.position-relative
+        - if post.sharing_status == "limited"
+            i.fa.fa-lock.private_icon
+        -if !post.image.file.nil?
+            = image_tag post.image.url, class: 'h-100 img_album_post1 rounded-2'
+        -if post.user_id == current_user.id
+            = link_to "EDIT",edit_photo_path(post), class: "btn btn-sm change_photo_btn opacity-75 btn-outline-dark rounded-3"
+    .text-secondary.h6.mt-1.text_title_post.text-truncate.w-75
+        = post.title
+

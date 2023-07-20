@@ -1,0 +1,5 @@
+
+= image_tag(photo.image.url,id:"img_prev",class:"position-relative")
+= link_to photo_path(photo,mode: "delete_for_album", album_id: album.id), data: { turbo_method: "delete", turbo_confirm: "Are you sure?" }, class:"delete-icon w-75" do
+    i.fa-sharp.fa-solid.fa-xmark.fa-xl
+

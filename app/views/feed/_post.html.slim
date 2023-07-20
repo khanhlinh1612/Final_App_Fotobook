@@ -1,3 +1,4 @@
+  = javascript_include_tag 'album.js'
   .picture.position-relative
     .row.h-100.position-relative
       .col-6.h-100.position-relative(data-bs-toggle="modal", data-bs-target="#exampleModal-#{post.id}")
@@ -5,25 +6,22 @@
       .col-6.h-100.position-relative
         .row.h-100.position-relative.py-2
           .col-md-12
-            .row.pe-1
+            .row.pe-2
               .col-9.d-flex.align-items-center
                 = link_to image_tag(post.user.avatar.url,class:"avatar align-items-center") ,user_path(post.user.id) if post.user.avatar?
                 = link_to post.user.first_name + " " + post.user.last_name, user_path(post.user.id), class: "d-flex float-start mt-1 name text-decoration-none "
-              .col-2.position-relative.mt-2
+              .col-3.position-relative.mt-2
                 - if controller_name == "discover" && current_user.id != post.user.id
                   - relationship = current_user.active_relationships.find_by(followed_id: post.user.id)
                   - if relationship.nil?
-                      p.follow_label.position-absolute
-                        |follow
+                    = button_to "follow", relationships_path, params: {relationship: {followed_id: post.user.id}}, method: :post, class: "btn follow_label btn-outline-warning position-absolute"
                   - else
-                      p.following_label.position-absolute
-                        |following
-
-
+                    = button_to "following", relationship_path(relationship), method: :delete, class: "btn following_label btn-outline-warning position-absolute"
           .col-md-12
             h5.title_post =post.title
           .col-md-12.h-50.position-relative
             p.h-100.description = post.description
+
           .col-md-12.post_info.align-items-center
             -if user_signed_in?
               -if @mode == "PHOTO"

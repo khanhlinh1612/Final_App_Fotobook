@@ -1,0 +1,37 @@
+
+= javascript_include_tag 'album.js'
+== form_with model: @photo, url: user_albums_path(album_id: @album.id), method: "post" do |form|
+  - if @album.errors.any?
+    div style="color: red"
+      h2 = "#{pluralize(@album.errors.count, "error")} prohibited this photo from being saved:"
+      ul
+        - @album.errors.each do |error|
+          li = error.full_message
+
+  div.container
+    .div
+      .row
+        .col-6.mb-3
+          .row.gy-2
+            .col-12
+              == form.label :title, class: "form_title text-black"
+              == form.text_field :title, autofocus: true, placeholder: "Photo Title", class: "form-control"
+            .col-md-6.col-9
+              .div.d-flex.flex-column
+                == form.label :sharing_status ,"Sharing Mode", class: "form_title text-black"
+                == form.select :sharing_status, [['public','shared'],['private','limited']], {selected: 'shared'}, { class: "btn btn-md dropdown-toggle dropdown-toggle-split text-secondary border border-dark form_control1" }
+        .col-6.d-flex.flex-column
+          == form.label :description, class: "form_title text-black"
+          == form.text_area :description, placeholder: "Photo Description", class: "form_control1 h-75"
+          == form.hidden_field :user_id, :value => current_user.id
+        .col-12
+          .row.g-1.mt-3
+            .col-4.col-md-3.d-none#block_img onclick="deleteImage()"
+              = image_tag("",id:"img_prev",class:"position-relative")
+              .delete-icon.w-75
+                i.fa-sharp.fa-solid.fa-xmark.fa-xl
+            .col-4.col-md-3#block_change_img
+              == button_tag id: "files", onclick:"document.getElementById('file').click(); return false;"
+                i.fa-solid.fa-plus.icon_plus
+              == form.file_field :image , type: "file", class: "invisible", id:"file", onchange:"readURL(this,'img_prev','edit');"
+    = form.submit "Save", method: "post", class: "btn_create_post"

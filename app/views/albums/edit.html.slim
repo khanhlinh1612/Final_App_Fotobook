@@ -9,6 +9,6 @@ body.feeds
               .d-flex.justify-content-end
                 = link_to "Back", user_path(current_user.id), class: "btn btn-primary px-3 btn-sm btn_back"
               hr
-                == render "form_edit", album: @album
+                == render "form_edit", album: @album, photos: @photos
 
 

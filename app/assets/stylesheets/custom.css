@@ -214,14 +214,12 @@ select option {
     color: white ;
     font-weight: 700;
     font-size: small;
-    border: 1px solid #babbc0 ;
     border-radius: 0px;
 }
 #album_mode{
     background-color:#fcfbfd;
     color: #5877a2;
     font-weight: 700;
-    border: 1px solid #babbc0 ;
     font-size: small;
     border-radius: 0px;
 }
@@ -271,7 +269,7 @@ select option {
 }
 .description{
     display: block;/* or inline-block */
-    overflow: hidden;
+    overflow:hidden;
     max-height: 7.2em;
     line-height: 1.2em;
     margin-right: 10px;
@@ -443,7 +441,16 @@ select option {
     padding: 5px 20px;
     margin-top: 20px;
 }
-
+.add_photo{
+    height: 150px;
+    border-radius: 5px;
+    background-color: #F2F2F2;
+    border: 2px dashed #BDBDBD;
+    outline: none;
+    cursor: pointer;
+    width: 92%;
+    z-index: 0;
+}
 #files{
     height: 150px;
     border-radius: 5px;
@@ -474,7 +481,6 @@ select option {
     color: #bdbddb;
     font-size: 50px;
 }
-
 
 .avatar{
     width: 35px;
@@ -535,6 +541,7 @@ select option {
     color:white;
     border: 1px solid black;
 }
+
 .follow_button{
     color: #f03e1a !important;
     border: 2px solid coral !important;
@@ -551,7 +558,7 @@ select option {
     background-color: white ;
     font-size: 11px;
     font-weight: 500;
-    color: #fa9a90;
+    color: coral;
     position: absolute;
     border-radius: 6px;
     padding: 1px 4px;
@@ -560,26 +567,17 @@ select option {
 }
 .following_label{
     height: auto;
-    background-color: #fa9a90;
-    font-size:8px;
-    font-weight: 600;
-    color: white;
-    position: absolute;
-    border-radius: 6px;
-    padding: 1px 4px;
-    left: 0;
-}
-.following_label1{
-    height: auto;
-    background-color: #fa9a90;
+    background-color:coral;
     font-size:11px;
     font-weight: 600;
     color: white;
     position: absolute;
+    border:none;
     border-radius: 6px;
-    padding: 1px 4px;
+    padding: 1px 3px;
     left: 0;
 }
+
 .btn_edit_profile{
     text-decoration: none;
     color: #2236ba;
@@ -636,4 +634,18 @@ select option {
 .button_like{
     border:none ;
     background-color:  #f8f8f8;
+}
+.number_photos{
+    position: absolute;
+    right:25%;
+    height: 50%;
+    font-weight: 700;
+    top: 25%;
+    z-index: 4;
+    background-color:#555 !important;
+    font-size:x-small ;
+    color:white;
+    width: 50%;
+    border-radius: 50%;
+    border: 1px solid black;
 }
