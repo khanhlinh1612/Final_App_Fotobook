@@ -3,9 +3,17 @@ div.position-relative
         - if post.sharing_status == "limited"
             i.fa.fa-lock.private_icon
         -if !post.image.file.nil?
-            = image_tag post.image.url, class: 'h-100 img_album_post1 rounded-2'
+            = image_tag post.image.url, class: 'h-100 img_album_post1 rounded-2 open-modal-image', data: { bs_toggle: "modal", bs_target: "#exampleModal-#{post.id}" }
         -if post.user_id == current_user.id
             = link_to "EDIT",edit_photo_path(post), class: "btn btn-sm change_photo_btn opacity-75 btn-outline-dark rounded-3"
     .text-secondary.h6.mt-1.text_title_post.text-truncate.w-75
         = post.title
+.modal.fade(id="exampleModal-#{post.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true")
+    .modal-dialog.modal-lg.modal-dialog-scrollable
+        .modal-content.px-3.py-3.position-relative
+            i.fa.fa-close.modal-close(data-bs-dismiss="modal" aria-label="Close")
+            h5.d-block.font-weight-bold.title_post.mt-3.d-flex.float-start =post.title
+            .modal-body
+              img.img-fluid.mb-3(src=post.image.url alt="Photo / Album thumbnail")
+              p.description1 = post.description
 

@@ -1,25 +1,37 @@
 div.position-relative
-    .album_post.position-relative
-        - if post.sharing_status == "limited"
-            i.fa.fa-lock.private_icon
-        -if post.is_a?(Photo) && !post.image.file.nil?
-            = image_tag post.image.url, class: 'h-100 img_album_post1 rounded-2'
-        -if post.is_a?(Album) && !post.image.file.nil?
-            = image_tag post.image.url, class: 'h-100 img_album_post1 rounded-2'
-        -if post.user_id == current_user.id
-            -if post.is_a?(Photo)
-                = link_to "EDIT",edit_photo_path(post), class: "btn btn-sm change_photo_btn opacity-75 btn-outline-dark rounded-3"
-            -else
-                .number_photos.opacity-75.d-flex.flex-column.pt-2
-                    h5
-                        = post.photos.size
-                    h6
-                        |PHOTOS
+  .album_post.position-relative
+    - if post.sharing_status == "limited"
+      i.fa.fa-lock.private_icon
+    - if !post.image.file.nil?
+      = image_tag post.image.url, class: 'h-100 img_album_post1 rounded-2', data: { bs_toggle: "modal", bs_target: "#exampleModal-#{post.id}" }
+    - if post.user_id == current_user.id
+      .number_photos.opacity-75.d-flex.flex-column.pt-2
+        h5 = post.photos.size
+        h6 PHOTOS
+      = link_to "EDIT", edit_album_path(post), method: :get, class: "btn btn-sm change_photo_btn btn-outline-light opacity-75 rounded-1"
+    = image_tag post.image.url, class: 'h-100 img_album_post2 rounded-1'
+    = image_tag post.image.url, class: 'h-100 img_album_post3 rounded-1'
+  .text-secondary.h6.mt-1.text_title_post.text-truncate.w-75 = post.title
 
-                = link_to "EDIT",edit_album_path(post), method: :get, class: "btn btn-sm change_photo_btn btn-outline-light opacity-75 rounded-1"
-        -if post.is_a?(Album)  && !post.image.file.nil?
-                = image_tag post.image.url, class: 'h-100 img_album_post2 rounded-1'
-                = image_tag post.image.url, class: 'h-100 img_album_post3 rounded-1'
-    .text-secondary.h6.mt-1.text_title_post.text-truncate.w-75
-        = post.title
+.modal.fade(id="exampleModal-#{post.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true")
+  .modal-dialog.modal-lg.modal-dialog-scrollable
+    .modal-content.px-3.py-3.position-relative
+      i.fa.fa-close.modal-close(data-bs-dismiss="modal" aria-label="Close")
+      h5.d-block.font-weight-bold.title_post.mt-3.d-flex.float-start = post.title
+      .modal-body
+        .carousel.slide.mb-3.carousel-fade(id="mycarousel-#{post.id}")
+          - if post.photos.any?
+            div.carousel-inner
+              -post.photos.each_with_index do |photo, index|
+                div class="carousel-item h-75 #{'active' if index == 0}"
+                  = image_tag photo.image.url, class: 'd-block img-fluid image_carousel mb-3'
+                  p.description1 = photo.description
+          - else
+            p No photos available.
 
+        a.carousel-control-prev(href="#mycarousel-#{post.id}" role="button" data-bs-slide="prev")
+          span.carousel-control-prev-icon(aria-hidden="true")
+          span.sr-only Previous
+        a.carousel-control-next(href="#mycarousel-#{post.id}" role="button" data-bs-slide="next")
+          span.carousel-control-next-icon(aria-hidden="true")
+          span.sr-only Next

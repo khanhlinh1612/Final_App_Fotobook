@@ -72,5 +72,24 @@
             i.fa.fa-close.modal-close(data-bs-dismiss="modal" aria-label="Close")
             h5.d-block.font-weight-bold.title_post.mt-3.d-flex.float-start =post.title
             .modal-body
-              img.img-fluid.mb-3(src=post.image.url alt="Photo / Album thumbnail")
-              p.description1 = post.description
+              -if @mode == "PHOTO"
+
+                img.d-block.img-fluid.image_carousel.mb-3(src=post.image.url alt="Photo / Album thumbnail")
+                p.description1 = post.description
+
+              -else
+                - if post.photos.any?
+                  .carousel.slide.mb-3.carousel-fade(id="mycarousel-#{post.id}")
+                    div.carousel-inner
+                      -post.photos.each_with_index do |photo, index|
+                        div class="carousel-item h-75 #{'active' if index == 0}"
+                          = image_tag photo.image.url, class: 'd-block img-fluid image_carousel mb-3'
+                          p.description1 = photo.description
+                  a.carousel-control-prev(href="#mycarousel-#{post.id}" role="button" data-bs-slide="prev")
+                    span.carousel-control-prev-icon(aria-hidden="true")
+                    span.sr-only Previous
+                  a.carousel-control-next(href="#mycarousel-#{post.id}" role="button" data-bs-slide="next")
+                    span.carousel-control-next-icon(aria-hidden="true")
+                    span.sr-only Next
+                - else
+                  p No photos available.
