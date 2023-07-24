@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'admin/index'
   resources :like_albums, only: [:create, :destroy]
   resources :like_photos, only: [:create, :destroy]
   get 'discover/index', to: "discover#index"

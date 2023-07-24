@@ -1,3 +1,11 @@
 .sidebar
-    = link_to "Feeds", root_path, class: (controller_name == "feed" ? "left_title1" : "left_title")
-    = link_to "Discover", discover_index_path, class: (controller_name == "discover" ? "left_title1" : "left_title")
+    -if current_user.is_admin
+        = button_to admin_index_path, params: {mode: "photo"}, method: :get,  class: ( @mode == "photo" ? "left_title1" : "left_title") do
+            |Manage Photos
+        = button_to admin_index_path, params: {mode: "album"}, method: :get ,class: ( @mode == "album" ? "left_title1" : "left_title") do
+            |Manage Albums
+        = button_to admin_index_path, params: {mode: "user"}, method: :get, class: ( @mode == "user" ? "left_title1" : "left_title") do
+            |Manage Users
+    - else
+        = link_to "Feeds", root_path, class: (controller_name == "feed" ? "left_title1" : "left_title")
+        = link_to "Discover", discover_index_path, class: (controller_name == "discover" ? "left_title1" : "left_title")

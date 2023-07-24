@@ -1,7 +1,14 @@
 nav.navbar.navbar-expand-sm.d-flex.bg-body-info.position-relative
   .container-fluid
     .collapse.navbar-collapse#navbarTogglerDemo03.ps-md-5.ps-1
-      a.navbar-brand.title.text-light.ms-md-5.ms-3.text-lg href='#' Fotobook
+      a.navbar-brand.title.text-light.ms-md-5.ms-3.text-lg href='#'
+        -if user_signed_in?
+          -if current_user.is_admin
+            |Fotobook Admin
+          -else
+            |Fotobook
+        -else
+            |Fotobook
       form.d-flex.col-md-6.d-block.w-50.ms-5 role='search'
         input.form-control.me-2.d-block.w-75 type='search' placeholder='Search Photo / Album' aria-label='Search'
       - if user_signed_in?

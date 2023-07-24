@@ -1,0 +1,22 @@
+= javascript_include_tag 'album.js'
+
+body.feeds
+  .container-fluid.mt-3
+    .row
+      .col-md-2
+        - if user_signed_in?
+          .d-flex.justify-content-center
+            == render "layouts/sidebar"
+
+      .col-md-8.px-4.py-3.g-1.text-center.main_feeds
+        h2 Forgot your password?
+        = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+          == render "devise/shared/error_messages", resource: resource
+
+          .field.d-flex.flex-row.justify-content-center.mt-5.align-items-center.fw-bold.mb-5
+            == f.label :email, class: "me-3 form-label"
+            br
+            == f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control w-50"
+            == f.submit "Send me instructions", class: "btn btn-warning h6 text-dark ms-4"
+        .d-flex.flex-row.justify-content-center
+          == render "devise/shared/links"

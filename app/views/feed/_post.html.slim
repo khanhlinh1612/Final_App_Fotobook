@@ -76,7 +76,6 @@
 
                 img.d-block.img-fluid.image_carousel.mb-3(src=post.image.url alt="Photo / Album thumbnail")
                 p.description1 = post.description
-
               -else
                 - if post.photos.any?
                   .carousel.slide.mb-3.carousel-fade(id="mycarousel-#{post.id}")

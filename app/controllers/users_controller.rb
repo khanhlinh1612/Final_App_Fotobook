@@ -58,8 +58,21 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1 or /users/1.json
   def update
     respond_to do |format|
+      if params[:user][:password].blank?
+        params[:user].delete(:password)
+      end
+      if params[:user][:status].blank?
+        params[:user].delete(:status)
+      else
+        params[:user][:status] = "inactive" if params[:user][:status] == "0"
+        params[:user][:status] = "active" if params[:user][:status] == "1"
+      end
       if @user.update(user_params)
-        format.html { redirect_to user_path(id:current_user.id, mode: "photos"), notice: "User was successfully updated." }
+        if (current_user.is_admin && current_user.id == @user.id) || (! current_user.is_admin)
+          format.html { redirect_to user_path(id:current_user.id, mode: "photos"), notice: "User was successfully updated." }
+        else
+          format.html { redirect_to admin_index_path(mode: "user"), notice: "User was successfully updated." }
+        end
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -96,7 +109,7 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:first_name,:last_name,:avatar,:email)
+      params.require(:user).permit(:first_name,:last_name,:avatar,:email,:password,:status)
     end
     def user_params_change_password
       params.require(:user).permit(:current_password, :password, :password_confirmation)

@@ -37,3 +37,7 @@ function create_truncate(id) {
 }
 
 // create_truncate('description');
+function updateStatus(checked) {
+  const statusField = document.querySelector('#user_status'); // Thay '#user_status' bằng đúng id của trường status nếu cần
+  statusField.value = checked ? 'active' : 'inactive';
+}

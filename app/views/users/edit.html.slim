@@ -6,5 +6,8 @@ body.feeds
             .col-md-8.px-4.py-3.g-1.main_feeds
               .title_new_post Edit User Profile
               hr
-              = render partial: "form", locals: { user: @user, mode: "photos"}
-              == render partial: "form_change_password", locals: {user: @user}
+              - if current_user.is_admin && current_user.id != @user.id
+                == render partial: "editUser", locals: {user: @user, mode: "photos"}
+              -else
+                == render partial: "form", locals: { user: @user, mode: "photos"}
+                == render partial: "form_change_password", locals: {user: @user}

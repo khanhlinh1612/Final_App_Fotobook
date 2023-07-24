@@ -3,6 +3,13 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  def active_for_authentication?
+      super && self.status == "active"
+  end
+
+  def inactive_message
+      "Sorry, this account has been deactivated."
+  end
   enum status: {inactive: 0 , active: 1}
   mount_uploader :avatar, AvatarUploader
   #Validate
@@ -25,6 +32,8 @@ class User < ApplicationRecord
   private
     def default_value
       self.status ||= 1
+      self.is_admin ||= false
     end
+
 end
 

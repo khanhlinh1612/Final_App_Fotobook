@@ -191,16 +191,20 @@ select option {
     color: #828282;
     text-decoration: none;
     line-height: 17.58px;
-    font-size: 15px;
+    font-size: 14px;
     margin-top:10px;
+    border: none;
+    background-color: #f8f8f8;
 }
 .left_title1{
     font-weight: 700;
     line-height: 17.58px;
     color: #3C5999;
     text-decoration: none;
-    font-size: 15px;
+    font-size: 14px;
     margin-top:10px;
+    border: none;
+    background-color: #f8f8f8;
 }
 .picture {
     background-color: #f8f8f8;
@@ -323,11 +327,12 @@ select option {
 }
 .edit_icon{
       position: absolute;
-      top: 5px;
-      right: 2px;
+      top: 7%;
+      right: 6%;
       color: #f0f0f0;
       font-weight: bold;
       cursor: pointer;
+      z-index: 5;
 }
 .description1{
     text-align: justify;
@@ -337,22 +342,39 @@ select option {
     line-height: 25px;
 }
 
+
 .post1{
     height: 250px;
 }
 .post_photo{
-    height: 205px;
+    height: 185px;
+    margin-bottom: 10px;
+}
+.post_photo1{
+    height: 210px;
+    margin-bottom: 24px;
 }
 
 .album_post{
     height: 150px !important;
     position: relative;
 }
+.album_post_admin{
+    height: 170px !important;
+    position: relative;
+    background-color: #f8f8f8;
+}
 .title_album_post{
-    background-color: rgba(141, 139, 139, 0.5);
+    background-color:#555;
     color: white;
     overflow: hidden;
     text-overflow: ellipsis;
+    position: absolute;
+    top: 0%;
+    left: 5%;
+    width: 90%;
+    padding: 3px 0px;
+    z-index: 4;
 }
 .private_icon{
     bottom: 80%;
@@ -372,6 +394,16 @@ select option {
     left: 5%;
     width: 90%;
     cursor:pointer;
+
+}
+.img_album_post1_admin{
+    z-index: 3;
+    position: absolute;
+    top: 10%;
+    height: 80%;
+    left: 10%;
+    width: 80%;
+    cursor:pointer;
 }
 .img_album_post2{
     z-index: 2;
@@ -379,6 +411,16 @@ select option {
     top: 0%;
     left: 5%;
     width: 90%;
+    transform:rotate(4deg);
+
+}
+.img_album_post2_admin{
+    z-index: 2;
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
     transform:rotate(4deg)
 }
 .img_album_post3{
@@ -388,6 +430,15 @@ select option {
     left: 5%;
     width: 90%;
     transform: rotate(8deg);
+}
+.img_album_post3_admin{
+    z-index: 1;
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+    transform: rotate(6deg);
 }
 .link_signup{
     text-decoration: none;
@@ -653,6 +704,11 @@ select option {
 .image_carousel{
     width: 800px;
     height: 500px;
+}
+td {
+    white-space: nowrap;
+    text-align: center;
+    vertical-align: middle;
 }
 /* .carousel-control-prev-icon,
 .carousel-control-next-icon {

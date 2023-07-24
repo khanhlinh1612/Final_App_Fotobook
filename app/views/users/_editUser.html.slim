@@ -1,7 +1,6 @@
 = javascript_include_tag 'album.js'
 = form_with(model: @user) do |form|
   - if @user.errors.any?
-    == action_name
     div style="color: red"
       h2 = "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
       ul
@@ -34,5 +33,13 @@
             = form.label :email, "Email", class: "form_title text-black w-25"
             = form.text_field :email, placeholder: "Email", class: "form-control text-secondary-emphasis text-secondary-emphasis text-secondary-emphasis text-secondary-emphasis text-secondary-emphasis text-secondary-emphasis text-secondary-emphasis text-secondary-emphasis text-secondary-emphasis w-50"
         .d-flex.flex-row.align-items-center.mb-3
+            = form.label :password, "Password", class: "form_title text-black w-25"
+            = form.password_field :password, placeholder:"*********",class: "form-control text-secondary-emphasis text-secondary-emphasis text-secondary-emphasis text-secondary-emphasis text-secondary-emphasis text-secondary-emphasis text-secondary-emphasis text-secondary-emphasis text-secondary-emphasis w-50"
+        .d-flex.flex-row.align-items-center.mb-3
+            = form.label :status, "Active?", class: "form_title text-black w-25"
+            = form.check_box :status, checked:  (user.status == "active"),class: "mt-2" , id: "user_status", onchange: "updateStatus(this.checked)"
+        .d-flex.flex-row.align-items-center.mb-3
             div.w-25
             = form.submit "Save", class: "save-button px-3 text-light bg-success"
+
+

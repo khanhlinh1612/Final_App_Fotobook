@@ -1,0 +1,23 @@
+= javascript_include_tag 'album.js'
+body.feeds
+  .container-fluid.mt-3
+    .row
+      .col-md-2
+        - if user_signed_in?
+          .d-flex.justify-content-center
+            == render "layouts/sidebar"
+      .col-md-8.px-4.py-3.g-1.text-center.main_feeds
+        -if @mode == "photo" || @mode == "album"
+          - @posts.each_slice(4) do |post_group|
+            .row
+              - post_group.each do |post|
+                .col-lg-3.col-6.text-center.post_photo
+                  - if @mode == "photo"
+                    == render partial: "users/photoInfo", locals: {post: post, mode: @mode, pagy:@pagy}
+                  - else
+                    == render partial: "users/albumInfo", locals: {post: post, mode: @mode, pagy: @pagy}
+        - else
+          .row
+            == render partial: "users/manageUser", locals: {posts: @posts, mode: @mode, pagy: @pagy}
+        .d-flex.justify-content-center.mt-4
+          == pagy_bootstrap_nav(@pagy)

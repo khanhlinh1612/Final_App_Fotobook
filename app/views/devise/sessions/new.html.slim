@@ -1,12 +1,8 @@
 
 
 .container-fuild
-  - if notice
-    .alert.alert-info = notice
-  - if alert
-    .alert.alert-warning = alert
-  - if flash[:success]
-    .alert.alert-success = flash[:success]
+  -if flash[:error]
+    .alert.alert-warning = flash[:error]
   .row.position-relative
     .col-sm-10.col-lg-4.m-auto
       h1.text-center.login-title Fotobook Login

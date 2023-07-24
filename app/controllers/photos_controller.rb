@@ -38,7 +38,13 @@ class PhotosController < ApplicationController
   def update
     respond_to do |format|
       if @photo.update(photo_params)
-        format.html { redirect_to user_path(current_user, mode: "photos"), notice: "Photo was successfully updated." }
+        format.html do
+          if !current_user.is_admin
+            redirect_to user_path(current_user, mode: "photos"), notice: "Photo was successfully updated."
+          else
+            redirect_to admin_index_path(mode: "photo"), notice: "Photo was successfully updated."
+          end
+        end
         format.json { render :show, status: :ok, location: @photo }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -51,11 +57,17 @@ class PhotosController < ApplicationController
   def destroy
     if params[:mode] == "delete_for_album"
       @photo.destroy
-      redirect_to edit_album_path(id:params[:album_id])
+      redirect_to edit_album_path(id:params[:album_id]), notice: "Photo was successfully destroyed"
     else
       @photo.destroy
       respond_to do |format|
-        format.html { redirect_to user_path(current_user, mode: "photos"), notice: "Photo was successfully destroyed." }
+        format.html do
+          if !current_user.is_admin
+            redirect_to user_path(current_user, mode: "photos"), notice: "Photo was successfully destroyed."
+          else
+            redirect_to admin_index_path(mode: "photo"), notice: "Photo was successfully destroyed."
+          end
+        end
         format.json { head :no_content }
         format.js   { render layout: false }
       end

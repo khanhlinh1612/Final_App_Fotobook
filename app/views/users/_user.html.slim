@@ -41,12 +41,12 @@
   - if current_user.id == user.id
     - if mode == "photos"
       .d-flex.justify-content-end
-        = link_to "Add Photo", new_user_photo_path(user.id), class: "btn btn-success btn-outline-warning btn-md text-light rounded-4 fw-bold"
+        = link_to "Add Photo", new_user_photo_path(user.id), class: "btn btn-success btn-sm btn-outline-warning btn-md text-light rounded-4 fw-bold mb-4"
     - else
       .d-flex.justify-content-end
-        = link_to "Add Album", new_user_album_path(user.id), class: "btn btn-success btn-outline-warning btn-md text-light rounded-4 fw-bold"
+        = link_to "Add Album", new_user_album_path(user.id), class: "btn btn-success btn-sm btn-outline-warning btn-md text-light rounded-4 fw-bold mb-4"
   - posts.each_slice(4) do |post_group|
-    .row.my-4
+    .row
       - post_group.each do |post|
         .col-lg-3.col-6.text-center.post_photo
           - if mode == "photos"
@@ -55,7 +55,7 @@
             = render partial: "albumInfo", locals: {post: post, mode: mode}
 - else
   - posts.each_slice(4) do |post_group|
-    .row.my-4
+    .row
       - post_group.each do |post|
-        .col-lg-3.col-6.text-center.post_photo
+        .col-lg-3.col-6.text-center.post_photo1
           == render partial: "userInfo", locals: {user: post, mode: mode}

@@ -1,0 +1,22 @@
+
+table.table.table-hover
+  thead
+    tr.fw-bolder
+      td First Name
+      td Last Name
+      td Email
+      td Last login
+      td
+      td
+  tbody
+    - posts.each do |post|
+      tr.h6
+        td = post.first_name
+        td = post.last_name
+        td = post.email
+        td = post.created_at
+        td
+          = button_to "Edit", edit_user_path(post),method: :get ,class: "btn btn-sm btn-success px-3"
+        td
+          = button_to "Delete", user_path(post), method: :delete,class: "btn btn-sm btn-danger px-2"
+
