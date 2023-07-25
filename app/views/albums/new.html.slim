@@ -11,5 +11,5 @@ body.feeds
               - if @album.id.nil?
                 == render "form", album: @album
               -else
-                == render "form_add_photo", photo: @photo
+                == render "form_add_photo", photos: @photos, album: @album
 

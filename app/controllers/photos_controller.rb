@@ -59,10 +59,11 @@ class PhotosController < ApplicationController
       @photo.destroy
       redirect_to edit_album_path(id:params[:album_id]), notice: "Photo was successfully destroyed"
     else
+      @user_id = @photo.user_id
       @photo.destroy
       respond_to do |format|
         format.html do
-          if !current_user.is_admin
+          if (current_user.is_admin && current_user.id == @user_id)|| (!current_user.is_admin)
             redirect_to user_path(current_user, mode: "photos"), notice: "Photo was successfully destroyed."
           else
             redirect_to admin_index_path(mode: "photo"), notice: "Photo was successfully destroyed."

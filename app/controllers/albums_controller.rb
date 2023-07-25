@@ -1,5 +1,6 @@
 class AlbumsController < ApplicationController
   before_action :set_album, only: %i[show update edit destroy]
+  MAXPHOTO = 25
 
   # GET /albums or /albums.json
   def index
@@ -14,11 +15,16 @@ class AlbumsController < ApplicationController
   def new
     if params[:album_id].present?
       @album = Album.find(params[:album_id])
-      @photo = @album.photos.build
-      @photo.title = @album.title
-      @photo.description = @album.description
-      @photos = @album.photos
-    else
+      @photos = @album.photos.where.not(id: nil)
+      if @photos.size == MAXPHOTO
+        @photo = @photos.last
+        flash[:notice] = "Album should have at most 25 photo defined."
+      else
+        @photo = @album.photos.build
+        @photo.title = @album.title
+        @photo.description = @album.description
+      end
+      else
       @album = Album.new
       @photo = @album.photos.build
     end
@@ -34,7 +40,9 @@ class AlbumsController < ApplicationController
   def create
     if params[:album_id].present?
       @album = Album.find(params[:album_id])
-      @album.photos.build(photo_params)
+      if @album.photos.size < MAXPHOTO
+        @album.photos.build(photo_params)
+      end
     else
       @album = Album.new(album_params)
       @album.user_id = current_user.id
@@ -56,11 +64,14 @@ class AlbumsController < ApplicationController
   # PATCH/PUT /albums/1 or /albums/1.json
   def update
     respond_to do |format|
+      if !params[:album][:image].blank?
+        @album.photos.build(title: @album.title, album_id:@album.id,user_id: @album.user_id,description: @album.description, image: params[:album][:image])
+      end
       if @album.update(album_edit)
-        format.html { redirect_to user_path(current_user, mode: "albums"), notice: "Album was successfully updated." }
+        format.html { redirect_to edit_album_path(@album), notice: "Album was successfully updated." }
         format.json { render :show, status: :ok, location: @album }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        format.html { render :edit,  status: :unprocessable_entity }
         format.json { render json: @album.errors, status: :unprocessable_entity }
       end
     end
@@ -74,7 +85,11 @@ class AlbumsController < ApplicationController
     @album.destroy
 
     respond_to do |format|
-      format.html {redirect_to user_path(current_user, mode: "albums"), notice: "Album was successfully destroyed." }
+      if current_user.is_admin
+        format.html {redirect_to admin_index_path(mode: "album"), notice: "Album was successfully destroyed." }
+      else
+        format.html {redirect_to user_path(mode: "albums"), notice: "Album was successfully destroyed." }
+      end
       format.json { head :no_content }
     end
   end
@@ -89,7 +104,7 @@ class AlbumsController < ApplicationController
       params.require(:album).permit(photos_attributes: [:id, :title, :description, :image, :user_id])
     end
     def album_edit
-      params.require(:album).permit(:title, :description)
+      params.require(:album).permit(:title, :description, :image)
     end
     def photo_params
       params.require(:photo).permit(:title,:description,:image,:sharing_status, :user_id)

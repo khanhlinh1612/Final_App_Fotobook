@@ -2,7 +2,7 @@ class Photo < ApplicationRecord
   validates :title , presence:true ,length: {maximum:140}
   validates :description , presence:true,length: {maximum:300}
   validates :sharing_status , presence:true
-  validates :image , presence:true
+  validates :image , presence: true
   enum sharing_status: {
     limited: 0,
     shared: 1,

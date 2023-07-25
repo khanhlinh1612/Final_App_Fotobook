@@ -4,7 +4,10 @@ class Album < ApplicationRecord
   validates :description, presence: true, length: { maximum: 300 }
   validates :sharing_status, presence: true
   validates :photos, presence: true
+  validates :photos, length: {minimum: 1, message: 'Album should have at least 1 photo defined.'}
+  validates :photos, length: {maximum: 25, message: 'Album should have at most 25 photo defined.'}
   validates_associated :photos
+
   # Associations
   enum sharing_status: {
     limited: 0,

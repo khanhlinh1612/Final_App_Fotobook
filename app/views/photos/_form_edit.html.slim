@@ -34,11 +34,11 @@
                 i.fa-solid.fa-plus.icon_plus
               == form.file_field :image , type: "file", class: "invisible", id:"file", onchange:"readURL(this,'img_prev','edit');"
     .d-flex.flex-row
-  = form.submit "Save", method: "post", class: "btn_create_post"
-button.btn_destroy_post(type="button" data-bs-toggle="modal" data-bs-target="#exampleModal")
-  .d-flex.flex-row.text-center.align-items-center
-    i.fa-solid.fa-trash-can
-    p.m-0.ms-2 Delete
+      = form.submit "Save", method: "post", class: "btn_create_post"
+      button.btn_destroy_post(type="button" data-bs-toggle="modal" data-bs-target="#exampleModal")
+        .d-flex.flex-row.text-center.align-items-center
+          i.fa-solid.fa-trash-can
+          p.m-0.ms-2 Delete
 
 .modal.fade(id="exampleModal" tabindex="0" aria-labelledby="exampleModalLabel" aria-hidden="true")
   .modal-dialog

@@ -470,17 +470,14 @@ select option {
     background-color: #219653;
     color: white;
     border-radius: 5px;
-    margin-top: 20px;
-    height: auto;
 }
 .btn_destroy_post{
     background-color:tomato;
     color: white;
     border-radius: 5px;
     position:absolute;
-    bottom: 3%;
     left: 15%;
-    height: auto;
+    bottom: 0%;
     padding: 5.5px 4px;
 }
 .btn_back{
@@ -523,12 +520,26 @@ select option {
     height: 100%;
     z-index: 1;
 }
+#img_prev1{
+    border-radius: 5px;
+    background-color: #F2F2F2;
+    border: 2px dashed #BDBDBD;
+    outline: none;
+    cursor: pointer;
+    width: 92%;
+    height: 100%;
+    z-index: 1;
+}
 #block_img{
     position: relative;
     height: 150px;
     z-index: 0;
 }
-
+.block_img1{
+    position: relative;
+    height: 150px;
+    z-index: 0;
+}
 .icon_plus{
     color: #bdbddb;
     font-size: 50px;

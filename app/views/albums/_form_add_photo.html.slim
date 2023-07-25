@@ -26,12 +26,18 @@
           == form.hidden_field :user_id, :value => current_user.id
         .col-12
           .row.g-1.mt-3
-            .col-4.col-md-3.d-none#block_img onclick="deleteImage()"
-              = image_tag("",id:"img_prev",class:"position-relative")
-              .delete-icon.w-75
-                i.fa-sharp.fa-solid.fa-xmark.fa-xl
-            .col-4.col-md-3#block_change_img
-              == button_tag id: "files", onclick:"document.getElementById('file').click(); return false;"
-                i.fa-solid.fa-plus.icon_plus
-              == form.file_field :image , type: "file", class: "invisible", id:"file", onchange:"readURL(this,'img_prev','edit');"
+            - if photos&.present?
+              - photos.each do |photo|
+                .col-4.col-md-3.block_img1
+                  = render partial: "form_edit_photo", locals: {photo: photo, album: album}
+
+            -if @photo&.present? && @photo.id.nil?
+              .col-4.col-md-3.d-none#block_img onclick="deleteImage()"
+                = image_tag("",id:"img_prev",class:"position-relative")
+                .delete-icon.w-75
+                  i.fa-sharp.fa-solid.fa-xmark.fa-xl
+              .col-4.col-md-3#block_change_img
+                == button_tag id: "files", onclick:"document.getElementById('file').click(); return false;"
+                  i.fa-solid.fa-plus.icon_plus
+                == form.file_field :image , type: "file", class: "invisible", id:"file", onchange:"readURL(this,'img_prev','edit');"
     = form.submit "Save", method: "post", class: "btn_create_post"
