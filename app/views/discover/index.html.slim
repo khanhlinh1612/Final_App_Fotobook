@@ -4,7 +4,7 @@ body.feeds
     .row
       .col-md-2
         .d-flex.justify-content-center
-          == render "layouts/sidebar"
+          == render partial: "layouts/sidebar", locals: { mode: @mode }
       .col-md-8.px-4.py-3.g-1.text-center.main_feeds
         == form_with url: { action: "index", params: params.permit(:mode) }, method: :get, class: "group_mode" do |form|
           = form.submit "PHOTO", name: "mode", value: "PHOTO", class: "btn btn-lg btn-outline-primary", id: (@mode == "PHOTO" ? "photo_mode" : "album_mode")

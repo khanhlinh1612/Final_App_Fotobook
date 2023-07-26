@@ -9,8 +9,23 @@ nav.navbar.navbar-expand.d-flex.bg-body-info.position-relative
             |Fotobook
         -else
             |Fotobook
-      form.d-flex.col-md-6.d-block.w-50.ms-md-5.ms-2 role='search'
-        input.form-control.me-md-2.me-0.d-block.w-75 type='search' placeholder='Search Photo / Album' aria-label='Search'
+      - if !defined?(@mode) || (@mode != "PHOTO" ) || (@mode != "ALBUM")
+          - mode = "PHOTO"
+      -else
+          - mode = @mode
+      - if controller_name == "feed"
+        = form_with url: root_path, method: :get, class: "d-flex col-md-6 search_bar ms-md-5 ms-2" do |form|
+          = form.text_field :key, placeholder: 'Search Photo / Album', class: "form-control me-md-2 me-0 d-block w-75"
+          = form.hidden_field :search, :value => "yes"
+          = form.hidden_field :mode, :value => mode
+          = form.submit "Search", class: "btn btn-outline-light btn-sm ms-md-5 ms-3 me-3 me-md-3 fw-bold"
+      -else
+        = form_with url: discover_index_path, method: :get, class: "d-flex col-md-6 search_bar ms-md-5 ms-2" do |form|
+          = form.text_field :key, placeholder: 'Search Photo / Album', class: "form-control me-md-2 me-0 d-block w-75"
+          = form.hidden_field :search, :value => "yes"
+          = form.hidden_field :mode, :value => mode
+          = form.submit "Search", class: "btn btn-outline-light btn-sm ms-md-5 ms-3 me-3 me-md-3 fw-bold"
+
       - if user_signed_in?
         .col-md-2.me-4
           .d-flex.align-items-center
