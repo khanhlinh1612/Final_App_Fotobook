@@ -25,14 +25,19 @@
         .col-12
           .row.g-1.mt-3
             - if !photo.image.file.nil?
-              .col-4.col-md-3#block_img onclick="deleteImage()"
+              .col-4.col-md-3#block_img
                 = image_tag(photo.image.url,id:"img_prev",class:"position-relative")
+                = link_to photo_path(photo,mode: "delete_image", now: "edit"), data: { turbo_method: "delete", turbo_confirm: "Are you sure to delete this photo?" }, class:"delete-icon w-75" do
+                  i.fa-sharp.fa-solid.fa-xmark.fa-xl
+            -else
+              .col-4.col-md-3.d-none#block_img onclick="deleteImage()"
+                = image_tag("",id:"img_prev",class:"position-relative")
                 .delete-icon.w-75
                   i.fa-sharp.fa-solid.fa-xmark.fa-xl
-            .col-4.col-md-3.d-none#block_change_img
-              == button_tag id: "files", onclick:"document.getElementById('file').click(); return false;"
-                i.fa-solid.fa-plus.icon_plus
-              == form.file_field :image , type: "file", class: "invisible", id:"file", onchange:"readURL(this,'img_prev','edit');"
+              .col-4.col-md-3#block_change_img
+                == button_tag id: "files", onclick:"document.getElementById('file').click(); return false;"
+                  i.fa-solid.fa-plus.icon_plus
+                == form.file_field :image , type: "file", class: "invisible", id:"file", onchange:"readURL(this,'img_prev','edit');"
     .d-flex.flex-row
       = form.submit "Save", method: "post", class: "btn_create_post"
       button.btn_destroy_post(type="button" data-bs-toggle="modal" data-bs-target="#exampleModal")

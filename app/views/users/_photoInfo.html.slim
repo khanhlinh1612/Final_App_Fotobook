@@ -1,17 +1,17 @@
 div.position-relative
     .album_post.position-relative
-        - if !current_user.is_admin && post.sharing_status == "limited"
+        - if user_signed_in? && !current_user.is_admin && post.sharing_status == "limited"
             i.fa.fa-lock.private_icon
         -if !post.image.file.nil?
             = image_tag post.image.url, class: 'h-100 img_album_post1 rounded-2 open-modal-image', data: { bs_toggle: "modal", bs_target: "#exampleModal-#{post.id}" }
-        -if current_user.is_admin
+        -if user_signed_in? && current_user.is_admin
             p.title_album_post.text-truncate.opacity-75.fw-bold.px-5 =post.title
             = link_to edit_photo_path(post) do
                 i.fa.fa-edit.fa-lg.edit_icon
         -else
-            -if post.user_id == current_user.id
+            -if user_signed_in? && post.user_id == current_user.id
                 = link_to "EDIT",edit_photo_path(post), class: "btn btn-sm change_photo_btn opacity-75 btn-outline-dark rounded-3"
-    -if !current_user.is_admin
+    -if !user_signed_in? || (user_signed_in? && !current_user.is_admin)
         .text-secondary.h6.mt-1.text_title_post.text-truncate.w-75
             = post.title
 .modal.fade(id="exampleModal-#{post.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true")

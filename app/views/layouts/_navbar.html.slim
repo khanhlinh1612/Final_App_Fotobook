@@ -1,7 +1,7 @@
-nav.navbar.navbar-expand-sm.d-flex.bg-body-info.position-relative
+nav.navbar.navbar-expand.d-flex.bg-body-info.position-relative
   .container-fluid
     .collapse.navbar-collapse#navbarTogglerDemo03.ps-md-5.ps-1
-      a.navbar-brand.title.text-light.ms-md-5.ms-3.text-lg href='#'
+      = link_to root_path, class: "navbar-brand title text-decoration-none text-light ms-md-5 ms-1 text-lg"
         -if user_signed_in?
           -if current_user.is_admin
             |Fotobook Admin
@@ -9,11 +9,13 @@ nav.navbar.navbar-expand-sm.d-flex.bg-body-info.position-relative
             |Fotobook
         -else
             |Fotobook
-      form.d-flex.col-md-6.d-block.w-50.ms-5 role='search'
-        input.form-control.me-2.d-block.w-75 type='search' placeholder='Search Photo / Album' aria-label='Search'
+      form.d-flex.col-md-6.d-block.w-50.ms-md-5.ms-2 role='search'
+        input.form-control.me-md-2.me-0.d-block.w-75 type='search' placeholder='Search Photo / Album' aria-label='Search'
       - if user_signed_in?
-        = link_to image_tag(current_user.avatar.url ,class:"img-fluid avatar") ,user_path(current_user) if current_user.avatar?
-        = link_to current_user.first_name + " " + current_user.last_name,user_path(current_user), class: "ms-2 text-justify name text-decoration-none text-light"
-        = link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link end-0 me-md-5 me-3"
+        .col-md-2.me-4
+          .d-flex.align-items-center
+            = link_to image_tag(current_user.avatar.url ,class:"img-fluid avatar") ,user_path(current_user) if current_user.avatar?
+            = link_to current_user.first_name + " " + current_user.last_name,user_path(current_user), class: "ms-md-2 ms-1 text-justify name text-decoration-none text-light fs-6"
+        = link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link end-0 me-md-5 me-md-1"
       - else
         = link_to "Login", new_user_session_path, class: "nav-link end-0 me-md-5 me-3"

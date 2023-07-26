@@ -65,7 +65,7 @@
                     i.fa-sharp.fa-solid.fa-heart.fa-beat.icon_heart.me-1.text-secondary
                     p.number-icon
                       = (post.like_albums.size).to_s
-            p.time-post =post.created_at.in_time_zone(+7).strftime("%I:%M %p %d/%m/%Y").downcase
+            p.time-post.w-md-100.w-50 =post.created_at.in_time_zone(+7).strftime("%I:%M %p %d/%m/%Y").downcase
       .modal.fade(id="exampleModal-#{post.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true")
         .modal-dialog.modal-lg.modal-dialog-scrollable
           .modal-content.px-3.py-3.position-relative

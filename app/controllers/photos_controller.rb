@@ -58,6 +58,10 @@ class PhotosController < ApplicationController
     if params[:mode] == "delete_for_album"
       @photo.destroy
       redirect_to edit_album_path(id:params[:album_id]), notice: "Photo was successfully destroyed"
+    elsif params[:mode] == "delete_image"
+      @photo.remove_image!
+      @photo.save(validate: false)
+      redirect_to edit_photo_path(id: @photo.id), notice: "Image was successfully destroyed"
     else
       @user_id = @photo.user_id
       @photo.destroy

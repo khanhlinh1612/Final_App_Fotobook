@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
-
+  skip_before_action :authenticate_user!, only: [:index, :show]
   # GET /users or /users.json
   def index
     @users = User.all
@@ -14,13 +14,13 @@ class UsersController < ApplicationController
       @mode = "photos"
     end
     if @mode == "photos"
-      if @user.id == current_user.id
+      if user_signed_in? && @user.id == current_user.id
         @posts = Photo.where(user_id: @user.id).where(album_id: nil).order(created_at: :desc)
       else
         @posts = Photo.where(user_id: @user.id,sharing_status:"shared").where(album_id: nil).order(created_at: :desc)
       end
     elsif @mode == "albums"
-      if @user.id == current_user.id
+      if user_signed_in? && @user.id == current_user.id
         @posts = Album.where(user_id: @user.id).order(created_at: :desc)
       else
         @posts = Album.where(user_id: @user.id,sharing_status:"shared").order(created_at: :desc)
@@ -87,7 +87,12 @@ class UsersController < ApplicationController
     @user.destroy
 
     respond_to do |format|
-      format.html { redirect_to users_url, notice: "User was successfully destroyed." }
+      if current_user.is_admin
+        format.html{ redirect_to admin_index_path(mode: "user"), notice: "User was successfully destroyed."}
+      else
+        format.html { redirect_to users_url, notice: "User was successfully destroyed." }
+      end
+
       format.json { head :no_content }
     end
   end

@@ -2,5 +2,6 @@
   "dependencies": {
     "@popperjs/core": "^2.11.8",
     "blueimp-file-upload": "^10.32.0"
-  }
+  },
+  "packageManager": "yarn@1.22.19"
 }

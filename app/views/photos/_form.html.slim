@@ -27,8 +27,10 @@
           .row.g-1.mt-3
             .col-4.col-md-3.d-none#block_img onclick="deleteImage()"
               = image_tag("",id:"img_prev",class:"position-relative")
+
               .delete-icon.w-75
                 i.fa-sharp.fa-solid.fa-xmark.fa-xl
+
             .col-4.col-md-3#block_change_img
               == button_tag id: "files", onclick:"document.getElementById('file').click(); return false;"
                 i.fa-solid.fa-plus.icon_plus

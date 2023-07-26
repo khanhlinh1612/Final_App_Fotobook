@@ -20,7 +20,7 @@ function readURL(input, id, mode) {
 function deleteImage(){
   document.getElementById('block_img').classList.add('d-none')
   document.getElementById('block_change_img').classList.remove('d-none')
-}
+};
 function create_truncate(id) {
   var e_array = document.getElementsByClassName(id);
   for (let i = 0; i < e_array.length; i++) {
@@ -34,10 +34,10 @@ function create_truncate(id) {
       }
     }
   }
-}
+};
 
 // create_truncate('description');
 function updateStatus(checked) {
   const statusField = document.querySelector('#user_status'); // Thay '#user_status' bằng đúng id của trường status nếu cần
   statusField.value = checked ? 'active' : 'inactive';
-}
+};

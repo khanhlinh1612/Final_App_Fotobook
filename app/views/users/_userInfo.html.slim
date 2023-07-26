@@ -14,7 +14,7 @@
             h6.text-primary.number_description
                 | PHOTOS
     div.row.d-flex.justify-content-center.align-items-center.mx-auto
-        - if current_user.id != user.id
+        - if user_signed_in? && current_user.id != user.id
             - follow =  current_user.active_relationships.find_by(followed_id: user.id)
             - if follow.nil?
                 div.d-block.mb-1

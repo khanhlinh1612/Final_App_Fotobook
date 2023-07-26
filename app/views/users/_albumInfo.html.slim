@@ -1,29 +1,29 @@
 div.position-relative
-  div class="#{ current_user.is_admin ? 'album_post_admin position-relative' : 'album_post position-relative'}"
-    - if !current_user.is_admin && post.sharing_status == "limited"
+  div class="#{ (user_signed_in? && current_user.is_admin) ? 'album_post_admin position-relative' : 'album_post position-relative'}"
+    - if user_signed_in? && !current_user.is_admin && post.sharing_status == "limited"
       i.fa.fa-lock.private_icon
     - if !post.image.file.nil?
-      - image_class = current_user.is_admin ? 'img_album_post1_admin rounded-2' : 'h-100 img_album_post1 rounded-2 open-modal-image'
+      - image_class = (user_signed_in? && current_user.is_admin) ? 'img_album_post1_admin rounded-2' : 'h-100 img_album_post1 rounded-2 open-modal-image'
       = image_tag post.image.url, class: image_class, data: { bs_toggle: "modal", bs_target: "#exampleModal-#{post.id}" }
 
-    - if current_user.is_admin
+    - if user_signed_in? && current_user.is_admin
       p.title_album_post.text-truncate.opacity-75.fw-bold.px-5 = post.title
       = link_to edit_album_path(post) do
         i.fa.fa-edit.fa-lg.edit_icon
     - else
-      - if post.user_id == current_user.id
+      - if user_signed_in? && post.user_id == current_user.id
         .number_photos.opacity-50.d-flex.flex-column.pt-2
           h5 = post.photos.size
           h6 PHOTOS
         = link_to "EDIT", edit_album_path(post), method: :get, class: "btn btn-sm change_photo_btn btn-outline-light opacity-75 rounded-1"
 
-    - image_class = current_user.is_admin ? 'img_album_post2_admin rounded-2' : 'h-100 img_album_post2 rounded-2'
+    - image_class = (user_signed_in? && current_user.is_admin) ? 'img_album_post2_admin rounded-2' : 'h-100 img_album_post2 rounded-2'
     = image_tag post.image.url, class: image_class
 
-    - image_class = current_user.is_admin ? 'img_album_post3_admin rounded-2' : 'h-100 img_album_post3 rounded-2'
+    - image_class = (user_signed_in? && current_user.is_admin) ? 'img_album_post3_admin rounded-2' : 'h-100 img_album_post3 rounded-2'
     = image_tag post.image.url, class: image_class
 
-  - if !current_user.is_admin
+  - if !user_signed_in? || (user_signed_in? && !current_user.is_admin)
     .text-secondary.h6.mt-2.text_title_post.text-truncate.w-75 = post.title
 
 .modal.fade(id="exampleModal-#{post.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true")
