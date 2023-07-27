@@ -12,7 +12,6 @@ class Photo < ApplicationRecord
   has_many :albums, through: :album_photos
   has_many :like_photos, dependent: :destroy
   has_one_attached :image
-  # mount_uploader :image, ImageUploader
   before_destroy :delete_image
   after_validation :default_value
   private

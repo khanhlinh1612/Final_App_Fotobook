@@ -17,8 +17,6 @@ class Album < ApplicationRecord
   belongs_to :user
   has_many :album_photos, dependent: :destroy
   has_one_attached :image
-  # mount_uploader :image, ImageUploader
-
   has_many :photos, through: :album_photos
   accepts_nested_attributes_for :photos, :allow_destroy=> true
   has_many :like_albums, dependent: :destroy

@@ -73,8 +73,8 @@
             h5.d-block.font-weight-bold.title_post.mt-3.d-flex.float-start =post.title
             .modal-body
               -if @mode == "PHOTO"
-
-                img.d-block.img-fluid.image_carousel.mb-3(src=post.image alt="Photo / Album thumbnail")
+                - if post.image.attached?
+                  = image_tag post.image, class: 'd-block img-fluid image_carousel mb-3'
                 p.description1 = post.description
               -else
                 - if post.photos.any?

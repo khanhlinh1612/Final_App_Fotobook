@@ -11,7 +11,6 @@ class User < ApplicationRecord
       "Sorry, this account has been deactivated."
   end
   enum status: {inactive: 0 , active: 1}
-  # mount_uploader :avatar, AvatarUploader
   has_one_attached :avatar
   #Validate
   validates :first_name, presence: true, length: {maximum: 25}

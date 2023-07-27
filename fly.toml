@@ -7,6 +7,8 @@ app = "fotobook"
 primary_region = "sin"
 console_command = "/rails/bin/rails console"
 
+[deploy]
+  release_command = "./bin/rails db:prepare"
 
 [http_service]
   internal_port = 3000
