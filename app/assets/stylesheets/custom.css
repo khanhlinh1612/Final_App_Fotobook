@@ -26,11 +26,12 @@
     font-size: large !important;
 
 }
+
 .form_control{
     height: 40px !important;
     font-size: small !important;
     font-weight: 700 !important;
-    border-radius: 2px ;
+    border-radius: 5px ;
     background-color: #fefefc;
     color: #6f6f6f !important;
 }
@@ -470,6 +471,7 @@ select option {
     background-color: #219653;
     color: white;
     border-radius: 5px;
+    border: 1px solid black;
 }
 .btn_destroy_post{
     background-color:tomato;

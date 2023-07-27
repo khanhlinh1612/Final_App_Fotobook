@@ -9,7 +9,7 @@
 
   div.container-fuild
     .div
-      .row
+      .row.mb-3
         .col-6.mb-3
           .row
             .col-12
@@ -24,26 +24,22 @@
           == form.text_area :description, placeholder: "Photo Description", class: "form_control1 h-75"
         .col-12
           .row.g-1.mt-3
-            - if !photo.image.file.nil?
+            - if photo.image.attached?
               .col-4.col-md-3#block_img
-                = image_tag(photo.image.url,id:"img_prev",class:"position-relative")
-                = link_to photo_path(photo,mode: "delete_image", now: "edit"), data: { turbo_method: "delete", turbo_confirm: "Are you sure to delete this photo?" }, class:"delete-icon w-75" do
+                = image_tag(photo.image,id:"img_prev",class:"position-relative")
+                .delete-icon.w-75 onclick="deleteImage()"
                   i.fa-sharp.fa-solid.fa-xmark.fa-xl
-            -else
-              .col-4.col-md-3.d-none#block_img onclick="deleteImage()"
-                = image_tag("",id:"img_prev",class:"position-relative")
-                .delete-icon.w-75
-                  i.fa-sharp.fa-solid.fa-xmark.fa-xl
-              .col-4.col-md-3#block_change_img
+              .col-4.col-md-3.d-none#block_change_img
                 == button_tag id: "files", onclick:"document.getElementById('file').click(); return false;"
                   i.fa-solid.fa-plus.icon_plus
                 == form.file_field :image , type: "file", class: "invisible", id:"file", onchange:"readURL(this,'img_prev','edit');"
-    .d-flex.flex-row
-      = form.submit "Save", method: "post", class: "btn_create_post"
-      button.btn_destroy_post(type="button" data-bs-toggle="modal" data-bs-target="#exampleModal")
+    .d-flex.flex-row.mt-2
+      = form.submit "Save", method: "post", class: "btn btn_create_post btn-md"
+      = link_to '#', class: 'btn btn-md btn_destroy_post ', data: { bs_toggle: 'modal', bs_target: '#exampleModal' } do
         .d-flex.flex-row.text-center.align-items-center
           i.fa-solid.fa-trash-can
           p.m-0.ms-2 Delete
+
 
 .modal.fade(id="exampleModal" tabindex="0" aria-labelledby="exampleModalLabel" aria-hidden="true")
   .modal-dialog

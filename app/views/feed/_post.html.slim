@@ -2,13 +2,13 @@
   .picture.position-relative
     .row.h-100.position-relative
       .col-6.h-100.position-relative(data-bs-toggle="modal", data-bs-target="#exampleModal-#{post.id}")
-        == image_tag post.image.url , class:"img-fluid img-thumbnail w-100 h-100" if post.image?
+        == image_tag post.image, class:"img-fluid img-thumbnail w-100 h-100" if post.image?
       .col-6.h-100.position-relative
         .row.h-100.position-relative.py-2
           .col-md-12
             .row.pe-2
               .col-9.d-flex.align-items-center
-                = link_to image_tag(post.user.avatar.url,class:"avatar align-items-center") ,user_path(post.user.id) if post.user.avatar?
+                = link_to image_tag(post.user.avatar,class:"avatar align-items-center") ,user_path(post.user.id) if post.user.avatar?
                 = link_to post.user.first_name + " " + post.user.last_name, user_path(post.user.id), class: "d-flex float-start mt-1 name text-decoration-none "
               .col-3.position-relative.mt-2
                 - if controller_name == "discover" && current_user.id != post.user.id
@@ -74,7 +74,7 @@
             .modal-body
               -if @mode == "PHOTO"
 
-                img.d-block.img-fluid.image_carousel.mb-3(src=post.image.url alt="Photo / Album thumbnail")
+                img.d-block.img-fluid.image_carousel.mb-3(src=post.image alt="Photo / Album thumbnail")
                 p.description1 = post.description
               -else
                 - if post.photos.any?
@@ -82,7 +82,8 @@
                     div.carousel-inner
                       -post.photos.each_with_index do |photo, index|
                         div class="carousel-item h-75 #{'active' if index == 0}"
-                          = image_tag photo.image.url, class: 'd-block img-fluid image_carousel mb-3'
+                          - if photo.image.attached?
+                            = image_tag photo.image, class: 'd-block img-fluid image_carousel mb-3'
                           p.description1 = photo.description
                   a.carousel-control-prev(href="#mycarousel-#{post.id}" role="button" data-bs-slide="prev")
                     span.carousel-control-prev-icon(aria-hidden="true")

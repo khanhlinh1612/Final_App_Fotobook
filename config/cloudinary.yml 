@@ -1,0 +1,5 @@
+production:
+  cloud_name: "db5om1nyi"
+  api_key: "375391414335171"
+  api_secret: "OS0x-j1WoO8sTTUmSmY_XKVljrA"
+  secure: true

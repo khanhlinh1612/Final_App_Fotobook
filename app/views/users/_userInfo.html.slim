@@ -1,5 +1,5 @@
 .post_user.py-2.d-flex.flex-column.position-relative.pb-4
-    = image_tag user.avatar.url , class: "avatar_user" if user.avatar?
+    = image_tag user.avatar , class: "avatar_user" if user.avatar.attached?
     h5
         = link_to user.first_name.titleize + " " + user.last_name.titleize , user_path(user.id), class: "text-decoration-none text-black"
     .row.align-items-center.gx-4

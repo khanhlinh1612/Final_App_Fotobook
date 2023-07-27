@@ -9,7 +9,7 @@ div.container-fuild
             li = error.full_message
     .div
       .row
-        .col-6
+        .col-6.mb-3
           .row
             .col-12
               h1
@@ -35,9 +35,9 @@ div.container-fuild
                 == button_tag id: "files", onclick:"document.getElementById('file').click(); return false;"
                   i.fa-solid.fa-plus.icon_plus
                 == form.file_field :image , type: "file", class: "invisible", id:"file", onchange:"readURL(this,'img_prev','edit');"
-      .d-flex.flex-row.align-items-center
-        = form.submit "Save", method: "post", class: "btn_create_post btn-md"
-        .btn.btn_destroy_post(type="button" data-bs-toggle="modal" data-bs-target="#exampleModal")
+      .d-flex.flex-row.align-items-center.mt-2
+        = form.submit "Save", method: "post", class: "btn btn_create_post btn-md"
+        = link_to '#', class: 'btn btn-md btn_destroy_post ', data: { bs_toggle: 'modal', bs_target: '#exampleModal' } do
           .d-flex.flex-row.text-center.align-items-center
             i.fa-solid.fa-trash-can
             p.m-0.ms-2 Delete

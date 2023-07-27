@@ -2,12 +2,13 @@ source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.0.0"
+gem 'execjs'
+gem 'therubyracer'
 gem 'devise'
 gem 'slim-rails'
-gem 'carrierwave', '~> 3.0'
+gem 'cloudinary'
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.5", ">= 7.0.5.1"
-gem 'fog-aws'
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 gem "pagy"

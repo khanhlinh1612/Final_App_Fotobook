@@ -10,7 +10,12 @@ Rails.application.routes.draw do
   end
 
   resources :users do
-    resources :albums, :photos, shallow:true
+    resources :albums, shallow:true
+    resources :photos, shallow: true do
+      member do
+        delete "delete_for_album"
+      end
+    end
     member do
       patch "update_password"
     end

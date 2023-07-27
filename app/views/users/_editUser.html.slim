@@ -13,8 +13,8 @@
         .d-flex.flex-row.align-items-center
           div.w-25
           .ava_edit_block.rounded-3
-            - if user.avatar?
-              = image_tag(user.avatar.url, class: "ava_edit rounded-3 position-relative", id:"edit_img")
+            - if user.avatar.attached?
+              = image_tag(user.avatar, class: "ava_edit rounded-3 position-relative", id:"edit_img")
             - else
               = image_tag("https://vnn-imgs-a1.vgcloud.vn/image1.ictnews.vn/_Files/2020/03/17/trend-avatar-1.jpg", class: "ava_edit rounded-3 position-relative", id:"edit_img")
             == button_tag "CHANGE",class: "btn btn-sm change-avatar opacity-75", onclick:"document.getElementById('ava_upload').click(); return false;"

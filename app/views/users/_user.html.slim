@@ -1,7 +1,7 @@
 = javascript_include_tag 'album.js'
 .row.mb-4
   .col-3
-    = image_tag user.avatar.url, class: "avatar_info" if user.avatar?
+    = image_tag user.avatar, class: "avatar_info" if user.avatar.attached?
   .col-md-9.col-10
     .d-flex.flex-column.float-start
       .d-flex.float-start

@@ -11,7 +11,7 @@ class AdminController < ApplicationController
     elsif @mode == "album"
       @pagy,@posts = pagy(Album.all, items: 12)
     else
-      @pagy, @posts = pagy(User.all.where(is_admin: false), items: 4)
+      @pagy, @posts = pagy(User.all.where(is_admin: false), items: 1)
     end
   end
 end

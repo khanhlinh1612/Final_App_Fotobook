@@ -2,8 +2,8 @@ div.position-relative
     .album_post.position-relative
         - if user_signed_in? && !current_user.is_admin && post.sharing_status == "limited"
             i.fa.fa-lock.private_icon
-        -if !post.image.file.nil?
-            = image_tag post.image.url, class: 'h-100 img_album_post1 rounded-2 open-modal-image', data: { bs_toggle: "modal", bs_target: "#exampleModal-#{post.id}" }
+        -if post.image.attached?
+            = image_tag post.image, class: 'h-100 img_album_post1 rounded-2 open-modal-image', data: { bs_toggle: "modal", bs_target: "#exampleModal-#{post.id}" }
         -if user_signed_in? && current_user.is_admin
             p.title_album_post.text-truncate.opacity-75.fw-bold.px-5 =post.title
             = link_to edit_photo_path(post) do
@@ -20,6 +20,6 @@ div.position-relative
             i.fa.fa-close.modal-close(data-bs-dismiss="modal" aria-label="Close")
             h5.d-block.font-weight-bold.title_post.mt-3.d-flex.float-start =post.title
             .modal-body
-              img.img-fluid.mb-3(src=post.image.url alt="Photo / Album thumbnail")
-              p.description1 = post.description
+              = image_tag(post.image, class: "img img-fluid mb-3")
+              p.description1 == post.description
 

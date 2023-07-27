@@ -16,21 +16,21 @@ nav.navbar.navbar-expand.d-flex.bg-body-info.position-relative
 
       - if controller_name == "feed"
         = form_with url: root_path, method: :get, class: "d-flex col-md-6 search_bar ms-md-5 ms-2" do |form|
-          = form.text_field :key, placeholder: 'Search Photo / Album', class: "form-control me-md-2 me-0 d-block w-75"
+          = form.text_field :key, placeholder: 'Search Photo / Album', class: "form_control px-2 me-md-2 me-0 d-block w-75"
           = form.hidden_field :search, :value => "yes"
           = form.hidden_field :mode, :value => mode
-          = form.submit "Search", class: "btn btn-outline-light btn-sm ms-md-5 ms-3 me-3 me-md-3 fw-bold"
+          = form.submit "Search", class: "btn btn-outline-light btn-md ms-md-3 ms-1 me-3 me-md-3 fw-bold"
       -else
         = form_with url: discover_index_path, method: :get, class: "d-flex col-md-6 search_bar ms-md-5 ms-2" do |form|
-          = form.text_field :key, placeholder: 'Search Photo / Album', class: "form-control me-md-2 me-0 d-block w-75"
+          = form.text_field :key, placeholder: 'Search Photo / Album', class: "form_control px-2 me-md-2 me-0 d-block w-75"
           = form.hidden_field :search, :value => "yes"
           = form.hidden_field :mode, :value => mode
-          = form.submit "Search", class: "btn btn-outline-light btn-sm ms-md-5 ms-3 me-3 me-md-3 fw-bold"
+          = form.submit "Search", class: "btn btn-outline-light btn-md ms-md-3 ms-1 me-3 me-md-3 fw-bold"
 
       - if user_signed_in?
         .col-md-2.me-4
           .d-flex.align-items-center
-            = link_to image_tag(current_user.avatar.url ,class:"img-fluid avatar") ,user_path(current_user) if current_user.avatar?
+            = link_to image_tag(current_user.avatar ,class:"img-fluid avatar") ,user_path(current_user) if current_user.avatar.attached?
             = link_to current_user.first_name + " " + current_user.last_name,user_path(current_user), class: "ms-md-2 ms-1 text-justify name text-decoration-none text-light fs-6"
         = link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link end-0 me-md-5 me-md-1"
       - else

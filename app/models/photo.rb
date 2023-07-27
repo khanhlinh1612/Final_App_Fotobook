@@ -11,7 +11,8 @@ class Photo < ApplicationRecord
   has_many :album_photos
   has_many :albums, through: :album_photos
   has_many :like_photos, dependent: :destroy
-  mount_uploader :image, ImageUploader
+  has_one_attached :image
+  # mount_uploader :image, ImageUploader
   before_destroy :delete_image
   after_validation :default_value
   private
@@ -19,6 +20,6 @@ class Photo < ApplicationRecord
       self.sharing_status ||= 1
     end
     def delete_image
-      self.remove_image!
+      self.image.purge
     end
 end

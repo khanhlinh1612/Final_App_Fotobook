@@ -2,9 +2,9 @@ div.position-relative
   div class="#{ (user_signed_in? && current_user.is_admin) ? 'album_post_admin position-relative' : 'album_post position-relative'}"
     - if user_signed_in? && !current_user.is_admin && post.sharing_status == "limited"
       i.fa.fa-lock.private_icon
-    - if !post.image.file.nil?
+    - if post.image.attached?
       - image_class = (user_signed_in? && current_user.is_admin) ? 'img_album_post1_admin rounded-2' : 'h-100 img_album_post1 rounded-2 open-modal-image'
-      = image_tag post.image.url, class: image_class, data: { bs_toggle: "modal", bs_target: "#exampleModal-#{post.id}" }
+      = image_tag post.image, class: image_class, data: { bs_toggle: "modal", bs_target: "#exampleModal-#{post.id}" }
 
     - if user_signed_in? && current_user.is_admin
       p.title_album_post.text-truncate.opacity-75.fw-bold.px-5 = post.title
@@ -16,12 +16,12 @@ div.position-relative
           h5 = post.photos.size
           h6 PHOTOS
         = link_to "EDIT", edit_album_path(post), method: :get, class: "btn btn-sm change_photo_btn btn-outline-light opacity-75 rounded-1"
+    - if post.image.attached?
+      - image_class = (user_signed_in? && current_user.is_admin) ? 'img_album_post2_admin rounded-2' : 'h-100 img_album_post2 rounded-2'
+      = image_tag post.image, class: image_class
 
-    - image_class = (user_signed_in? && current_user.is_admin) ? 'img_album_post2_admin rounded-2' : 'h-100 img_album_post2 rounded-2'
-    = image_tag post.image.url, class: image_class
-
-    - image_class = (user_signed_in? && current_user.is_admin) ? 'img_album_post3_admin rounded-2' : 'h-100 img_album_post3 rounded-2'
-    = image_tag post.image.url, class: image_class
+      - image_class = (user_signed_in? && current_user.is_admin) ? 'img_album_post3_admin rounded-2' : 'h-100 img_album_post3 rounded-2'
+      = image_tag post.image, class: image_class
 
   - if !user_signed_in? || (user_signed_in? && !current_user.is_admin)
     .text-secondary.h6.mt-2.text_title_post.text-truncate.w-75 = post.title
@@ -37,7 +37,8 @@ div.position-relative
             div.carousel-inner
               - post.photos.each_with_index do |photo, index|
                 div class="carousel-item h-75 #{'active' if index == 0}"
-                  = image_tag photo.image.url, class: 'd-block img-fluid image_carousel mb-3'
+                  -if photo.image.attached?
+                    = image_tag photo.image, class: 'd-block img-fluid image_carousel mb-3'
                   p.description1 = photo.description
           - else
             p No photos available.

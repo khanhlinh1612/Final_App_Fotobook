@@ -16,7 +16,8 @@ class Album < ApplicationRecord
 
   belongs_to :user
   has_many :album_photos, dependent: :destroy
-  mount_uploader :image, ImageUploader
+  has_one_attached :image
+  # mount_uploader :image, ImageUploader
 
   has_many :photos, through: :album_photos
   accepts_nested_attributes_for :photos, :allow_destroy=> true
@@ -37,6 +38,6 @@ class Album < ApplicationRecord
   end
 
   def delete_image
-    remove_image!
+    self.image.purge
   end
 end

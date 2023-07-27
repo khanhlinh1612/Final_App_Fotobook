@@ -1,5 +1,5 @@
 class PhotosController < ApplicationController
-  before_action :set_photo, only: %i[ show edit update destroy ]
+  before_action :set_photo, only: %i[ show edit update destroy delete_for_album ]
 
   # GET /photos or /photos.json
   def index
@@ -9,7 +9,10 @@ class PhotosController < ApplicationController
   # GET /photos/1 or /photos/1.json
   def show
   end
-
+  def delete_for_album
+    @photo.destroy
+    redirect_to edit_album_path(id:params[:album_id]), notice: "Photo was successfully destroyed"
+  end
   # GET /photos/new
   def new
     @photo = Photo.new
@@ -55,14 +58,6 @@ class PhotosController < ApplicationController
 
   # DELETE /photos/1 or /photos/1.json
   def destroy
-    if params[:mode] == "delete_for_album"
-      @photo.destroy
-      redirect_to edit_album_path(id:params[:album_id]), notice: "Photo was successfully destroyed"
-    elsif params[:mode] == "delete_image"
-      @photo.remove_image!
-      @photo.save(validate: false)
-      redirect_to edit_photo_path(id: @photo.id), notice: "Image was successfully destroyed"
-    else
       @user_id = @photo.user_id
       @photo.destroy
       respond_to do |format|
@@ -76,7 +71,6 @@ class PhotosController < ApplicationController
         format.json { head :no_content }
         format.js   { render layout: false }
       end
-    end
   end
 
   private

@@ -7,8 +7,6 @@ app = "fotobook"
 primary_region = "sin"
 console_command = "/rails/bin/rails console"
 
-[deploy]
-  release_command = "./bin/rails db:prepare"
 
 [http_service]
   internal_port = 3000
@@ -21,3 +19,7 @@ console_command = "/rails/bin/rails console"
 [[statics]]
   guest_path = "/rails/public"
   url_prefix = "/"
+
+[mounts]
+  source="fotobook_data"
+  destination="/data"

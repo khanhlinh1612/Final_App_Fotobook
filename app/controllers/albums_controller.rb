@@ -83,7 +83,6 @@ class AlbumsController < ApplicationController
       photo.destroy
     end
     @album.destroy
-
     respond_to do |format|
       if current_user.is_admin
         format.html {redirect_to admin_index_path(mode: "album"), notice: "Album was successfully destroyed." }
