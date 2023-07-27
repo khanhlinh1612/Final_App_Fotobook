@@ -9,10 +9,11 @@ nav.navbar.navbar-expand.d-flex.bg-body-info.position-relative
             |Fotobook
         -else
             |Fotobook
-      - if !defined?(@mode) || (@mode != "PHOTO" ) || (@mode != "ALBUM")
-          - mode = "PHOTO"
+      - if defined?(@mode) && (@mode == "PHOTO" || @mode == "ALBUM")
+        - mode = @mode
       -else
-          - mode = @mode
+        - mode = "PHOTO"
+
       - if controller_name == "feed"
         = form_with url: root_path, method: :get, class: "d-flex col-md-6 search_bar ms-md-5 ms-2" do |form|
           = form.text_field :key, placeholder: 'Search Photo / Album', class: "form-control me-md-2 me-0 d-block w-75"
